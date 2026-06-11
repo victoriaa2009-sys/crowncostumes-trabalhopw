@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+    background-color: #f4f7f6;
+}
+
+.nota {
+    display: inline-block;
+    padding: 20px 40px;
+    background-color: #008ddf; 
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nota-errada {
+    background-color: #e74c3c; 
+    color: white;
+}

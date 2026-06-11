@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap');
+
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: #0b0b0b;
+  color: #fff;
+}
+
+.logo {
+  width: 350px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+header {
+  background: black;
+  padding: 40px;
+  text-align: center;
+  border-bottom: 1px solid rgb(233, 217, 144);
+}
+
+header h1 {
+  font-family: "Imperial Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color:rgb(233, 217, 144);
+  letter-spacing: 2px;
+  font-size: 100px;
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+
+button {
+  box-shadow: none;
+  border: none;
+  outline: none;
+  background-color: #0b0b0b;
+}
+
+button:hover {
+    background-color:rgba(233, 217, 144, 0.541);
+    transition: 100ms ease-in; 
+}
+
+nav a {
+  color: rgb(233, 217, 144);
+  margin: 5px;
+  padding: 10px solid rgba(255, 255, 255, 0.199);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #855600;
+}
+
+.hero {
+  height: 400px;
+  background: url('../img/banner.jpg') center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero h2 {
+  font-size: 40px;
+}
+
+.btn {
+  background: rgb(233, 217, 144);
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.produtos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.produto {
+  background: #111;
+  border: 1px solid #333;
+  margin: 15px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.produto img {
+  width: 100%;
+}
+
+/* FOOTER */
+footer {
+  background: black;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgb(233, 217, 144);
+}
+
+/* RESUMO */
+.resumo {
+  background: #111;
+  width: 300px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #e6cb73;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.resumo input {
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+.resumo h2 {
+  color: #e6cb73;
+}

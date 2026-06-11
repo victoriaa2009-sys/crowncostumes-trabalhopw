@@ -1,0 +1,17 @@
+.status-classi {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.livre { background-color: #00a651; color: white; }      
+.dez { background-color: #049cdb; color: white; }        
+.doze { background-color: #fbd100; color: black; }      
+.quatorze { background-color: #ff7e00; color: white; }    
+.dezesseis { background-color: #e60012; color: white; }   
+.dezoito { background-color: #000000; color: white; }     
+.erro { background-color: #7f8c8d; color: white; }         
