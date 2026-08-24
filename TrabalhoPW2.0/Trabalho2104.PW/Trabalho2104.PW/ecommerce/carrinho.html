@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <title>Crown Costumes</title>
+  <link href="estilos.css" rel="stylesheet">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  
+  <div class="topo">
+    <form class="barra" action="carrinho.html">
+
+      <div class="marca">
+        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
+        <a href="paginainicial.html" class="nome-barra">Crown Costumes</a>
+      </div>
+      <div>
+        <span>
+          <input type="text" placeholder="Buscar fantasias..." name="busca">
+          <input type="submit" value="Buscar" class="btn-busca">
+        </span>
+      </div>
+      <div class="acoes">
+        <button formaction="login.html">Login</button>
+        <button formaction="cadastro.html">Cadastro</button>
+        <button formaction="carrinho.html">Carrinho</button>
+        <button formaction="sobre.html">Sobre</button>
+      </div>
+    </form>
+</div>
+
+<section>
+  <h2 class="carrinho-titulo">Seu Carrinho</h2>
+
+  <table class="carrinho">
+    <tr>
+      <th>Produto</th>
+      <th>Nome</th>
+      <th>Qtd</th>
+      <th>Preço</th>
+      <th>Total</th>
+    </tr>
+
+    <tr>
+      <td><img src="fotos/femininas/edward.jpeg" width="60" alt="Edward"></td>
+      <td>Edward, de Edward Mãos de Tesoura</td>
+      <td>1</td>
+      <td>R$ 148,98</td>
+      <td>R$ 148,98</td>
+    </tr>
+
+    <tr>
+      <td><img src="fotos/masculinas/anos80.jpg" width="60" alt="David Bowie"></td>
+      <td>David Bowie</td>
+      <td>1</td>
+      <td>R$ 148,98</td>
+      <td>R$ 148,98</td>
+    </tr>
+
+    <tr>
+      <td><img src="fotos/kids/palhacokids.webp" width="60" alt="Palhaço Infantil"></td>
+      <td>Palhaço Infantil</td>
+      <td>1</td>
+      <td>R$ 148,98</td>
+      <td>R$ 148,98</td>
+    </tr>
+  </table>
+
+  <div class="resumo">
+    <h3>Resumo do pedido</h3>
+
+    <label>CEP:</label>
+    <input type="text" placeholder="Digite seu CEP">
+
+    <p>Frete: R$ 30,00</p>
+    <h2>Total: R$ 476,94</h2>
+
+    <button class="btn">Finalizar Compra</button>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Crown Costume</p>
+</footer>
+
+</body>
+</html>
