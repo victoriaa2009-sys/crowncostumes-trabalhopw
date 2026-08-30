@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,23 +10,94 @@
 <body class="pagina-form">
 
   <div class="login-container">
-    <form class="login-box">
+
+    <form class="login-box" id="formCadastro">
+
       <h2>Cadastro</h2>
 
-      <input type="text" placeholder="Nome" required>
-      <input type="text" placeholder="Usuário" required>
-      <input type="password" placeholder="Senha" required>
-      <input type="text" placeholder="CPF" required>
-      <input type="date" required>
-      <input type="email" placeholder="Email" required>
+      <div id="mensagemCadastro" class="mensagem-login"></div>
 
-      <button class="btn">Cadastrar</button>
+      <input type="text" id="nome" placeholder="Nome">
+
+      <input type="text" id="usuario" placeholder="Usuário">
+
+      <input type="password" id="senha" placeholder="Senha">
+
+      <input type="text" id="cpf" placeholder="CPF">
+
+      <input type="date" id="dataNascimento">
+
+      <input type="email" id="email" placeholder="Email">
+
+      <button class="btn" type="submit">Cadastrar</button>
 
       <p class="link-login">
         Já tem conta? <a href="login.html">Entrar</a>
       </p>
+
     </form>
+
   </div>
+
+  <script>
+
+    const formCadastro = document.getElementById("formCadastro");
+    const mensagemCadastro = document.getElementById("mensagemCadastro");
+
+    formCadastro.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      let faltando = [];
+
+      const nome = document.getElementById("nome").value.trim();
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const cpf = document.getElementById("cpf").value.trim();
+      const dataNascimento = document.getElementById("dataNascimento").value;
+      const email = document.getElementById("email").value.trim();
+
+      if (nome === "") {
+        faltando.push("Nome");
+      }
+
+      if (usuario === "") {
+        faltando.push("Usuário");
+      }
+
+      if (senha === "") {
+        faltando.push("Senha");
+      }
+
+      if (cpf === "") {
+        faltando.push("CPF");
+      }
+
+      if (dataNascimento === "") {
+        faltando.push("Data de nascimento");
+      }
+
+      if (email === "") {
+        faltando.push("Email");
+      }
+
+      if (faltando.length > 0) {
+
+        mensagemCadastro.textContent =
+          "Faltou preencher: " + faltando.join(", ") + ".";
+
+      } else {
+
+        mensagemCadastro.textContent = "";
+
+        alert("Cadastro realizado com sucesso!");
+
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
+```

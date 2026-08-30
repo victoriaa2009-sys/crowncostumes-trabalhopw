@@ -322,6 +322,12 @@ footer {
   margin-top: 10px;
 }
 
+.mensagem-login {
+    color: red;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
 /*============================================================ CARRINHO ============================================================*/
 
 .resumo {

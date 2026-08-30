@@ -9,15 +9,49 @@
 <body class="pagina-form">
 
   <div class="login-container">
-<form class="login-box" action="paginainicial.html" method="get">
-      <h2>Login</h2>
 
-      <input type="text" placeholder="Usuário" required>
-      <input type="password" placeholder="Senha" required>
+    <form class="login-box" id="formLogin" action="paginainicial.html" method="get">
 
-      <button class="btn">Entrar</button>
+      <h1>Login</h1>
+
+      <div id="mensagemLogin" class="mensagem-login"></div>
+
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" name="usuario">
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha">
+
+      <button type="submit">Entrar</button>
+
     </form>
+
   </div>
-  
-  </body>
-  </html>
+
+  <script>
+    const formLogin = document.getElementById("formLogin");
+    const usuario = document.getElementById("usuario");
+    const senha = document.getElementById("senha");
+    const mensagemLogin = document.getElementById("mensagemLogin");
+
+    formLogin.addEventListener("submit", function(event) {
+
+      if (usuario.value.trim() === "" || senha.value.trim() === "") {
+
+        event.preventDefault();
+
+        mensagemLogin.textContent =
+          "É necessário digitar usuário e senha para prosseguir";
+
+      } else {
+
+        mensagemLogin.textContent = "";
+
+      }
+
+    });
+  </script>
+
+</body>
+</html>
+```
