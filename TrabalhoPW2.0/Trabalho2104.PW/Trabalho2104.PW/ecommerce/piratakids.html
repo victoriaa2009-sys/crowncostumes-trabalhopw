@@ -7,6 +7,8 @@
   <link href="estilos.css" rel="stylesheet">
 </head>
 
+<script src="script.js"></script>
+
 <body>
 
   <div class="topo">
@@ -30,166 +32,90 @@
         <button formaction="sobre.html">Sobre</button>
       </div>
     </form>
-</div>
-
-<section class="produto-container">
-
-  <div class="produto-img">
-    <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de pirata infantil">
   </div>
 
-  <div class="produto-info">
-    <h2>Fantasia de Pirata Infantil</h2>
+  <section class="produto-container" id="piratakids">
 
-    <p class="preco">R$ 168,78 à vista</p>
-    <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
+    <div class="produto-img">
+      <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de pirata infantil">
+    </div>
 
-    <p class="entrega">Entrega em até 5 dias úteis</p>
+    <div class="produto-info">
+      <h2>Fantasia de Pirata Infantil</h2>
 
-    <label>Quantidade:</label>
-    <input type="number" value="1" min="1">
+      <p class="preco">R$ 168,78 à vista</p>
+      <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
 
-    <h3>Formas de pagamento</h3>
-    <ul>
-      <li>Cartão de crédito (Visa e Mastercard)</li>
-      <li>Cartão de débito</li>
-      <li>PIX</li>
-      <li>Boleto bancário</li>
-    </ul>
+      <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <button class="btn">Adicionar ao Carrinho</button>
-  </div>
+      <label>Quantidade:</label>
+      <input type="number" value="1" min="1">
 
-</section>
+      <h3>Formas de pagamento</h3>
+      <ul>
+        <li>Cartão de crédito (Visa e Mastercard)</li>
+        <li>Cartão de débito</li>
+        <li>PIX</li>
+        <li>Boleto bancário</li>
+      </ul>
 
-<section class="produto-descricao">
-  <div>
-    <h2>Descrição do Produto</h2>
-    <p>
-      Fantasia completa de Pirata infantil, perfeita para festas, aniversários
-      e eventos temáticos. Confortável, leve e divertida, garante que a criança
-      entre no mundo mágico dos personagens clássicos.
-    </p>
-  </div>
-  <div>
-    <h2>Características</h2>
-    <ul>
-      <li>Material: poliéster confortável</li>
-      <li>Tamanhos: 1 a 10 anos</li>
-      <li>Inclui: calça + blusa + tapa olho</li>
-      <li>Cor: vermelho, preto e amarelo</li>
-    </ul>
-  </div>
-</section>
+      <button class="btn">Adicionar ao Carrinho</button>
+    </div>
 
-<section>
-  <h2>Avaliações</h2>
+  </section>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐⭐⭐</p>
-    <p>"Perfeita! Muito bonita e confortável."</p>
-    <p>12/03/2026</p>
-  </div>
+  <section class="produto-descricao">
+    <div>
+      <h2>Descrição do Produto</h2>
+      <p>
+        Fantasia completa de Pirata infantil, perfeita para festas, aniversários
+        e eventos temáticos. Confortável, leve e divertida, garante que a criança
+        entre no mundo mágico dos personagens clássicos.
+      </p>
+    </div>
+    <div>
+      <h2>Características</h2>
+      <ul>
+        <li>Material: poliéster confortável</li>
+        <li>Tamanhos: 1 a 10 anos</li>
+        <li>Inclui: calça + blusa + tapa olho</li>
+        <li>Cor: vermelho, preto e amarelo</li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐⭐</p>
-    <p>"Ótima qualidade, só demorou um pouco pra chegar."</p>
-    <p>05/03/2026</p>
-  </div>
+  <section>
+    <h2>Avaliações</h2>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐⭐⭐</p>
-    <p>"Amei! Igual à foto."</p>
-    <p>28/02/2026</p>
-  </div>
+    <div class="avaliacao">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"Perfeita! Muito bonita e confortável."</p>
+      <p>12/03/2026</p>
+    </div>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐</p>
-    <p>"Boa, mas poderia vir melhor embalada."</p>
-    <p>20/02/2026</p>
-  </div>
+    <div class="avaliacao">
+      <p>⭐⭐⭐⭐</p>
+      <p>"Ótima qualidade, só demorou um pouco pra chegar."</p>
+      <p>05/03/2026</p>
+    </div>
 
-</section>
+    <div class="avaliacao">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"Amei! Igual à foto."</p>
+      <p>28/02/2026</p>
+    </div>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+    <div class="avaliacao">
+      <p>⭐⭐⭐</p>
+      <p>"Boa, mas poderia vir melhor embalada."</p>
+      <p>20/02/2026</p>
+    </div>
 
-<script>
+  </section>
 
-  const produtos = [
-    { nome: "Mickey Mouse", pagina: "mickeykids.html" },
-    { nome: "Harry Potter", pagina: "harrypotter.html" },
-    { nome: "Maskara", pagina: "maskara.html" },
-    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.html" },
-    { nome: "David Bowie", pagina: "davidbowie.html" },
-    { nome: "Chapéu de Bruxa", pagina: "acessorios6.html" },
-
-    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.html" },
-    { nome: "Mágica", pagina: "magica.html" },
-    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.html" },
-    { nome: "Super Mario FEM", pagina: "mariofem.html" },
-
-    { nome: "Pânico", pagina: "panico.html" },
-    { nome: "Pikachu", pagina: "pikachu.html" },
-    { nome: "Luigi", pagina: "luigi.html" },
-    { nome: "Barney", pagina: "barney.html" },
-
-    { nome: "Minions", pagina: "acessorios1.html" },
-    { nome: "Espião", pagina: "acessorios2.html" },
-    { nome: "Mágico", pagina: "acessorios4.html" },
-    { nome: "Peruca verde e amarelo", pagina: "perucaverde.html" },
-
-    { nome: "Palhaço", pagina: "palhacokids.html" },
-    { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
-  ];
-
-
-  const campoBusca = document.getElementById("campo-busca");
-  const sugestoes = document.getElementById("sugestoes");
-
-
-  campoBusca.addEventListener("input", function() {
-
-    const texto = campoBusca.value.toLowerCase().trim();
-
-    sugestoes.innerHTML = "";
-
-    if (texto === "") {
-      return;
-    }
-
-
-    const resultados = produtos.filter(function(produto) {
-
-      return produto.nome.toLowerCase().includes(texto);
-
-    });
-
-
-    resultados.forEach(function(produto) {
-
-      const sugestao = document.createElement("div");
-
-      sugestao.textContent = produto.nome;
-
-      sugestao.classList.add("sugestao");
-
-
-      sugestao.addEventListener("click", function() {
-
-        window.location.href = produto.pagina;
-
-      });
-
-
-      sugestoes.appendChild(sugestao);
-
-    });
-
-  });
-
-</script>
+  <footer>
+    <p>© 2026 Crown Costumes</p>
+  </footer>
 
 </body>
 </html>

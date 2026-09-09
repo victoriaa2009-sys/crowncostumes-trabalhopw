@@ -6,6 +6,8 @@
   <link href="estilos.css" rel="stylesheet">
 </head>
 
+<script src="script.js"></script>
+
 <body class="pagina-form">
 
   <div class="login-container">
@@ -27,30 +29,6 @@
     </form>
 
   </div>
-
-  <script>
-    const formLogin = document.getElementById("formLogin");
-    const usuario = document.getElementById("usuario");
-    const senha = document.getElementById("senha");
-    const mensagemLogin = document.getElementById("mensagemLogin");
-
-    formLogin.addEventListener("submit", function(event) {
-
-      if (usuario.value.trim() === "" || senha.value.trim() === "") {
-
-        event.preventDefault();
-
-        mensagemLogin.textContent =
-          "É necessário digitar usuário e senha para prosseguir";
-
-      } else {
-
-        mensagemLogin.textContent = "";
-
-      }
-
-    });
-  </script>
 
 </body>
 </html>

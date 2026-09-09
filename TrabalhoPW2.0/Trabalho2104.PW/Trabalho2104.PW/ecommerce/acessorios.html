@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
 </head>
 
+<script src="script.js"></script>
+
 <body>
   
   <div class="topo">
@@ -28,132 +30,56 @@
         <button formaction="sobre.html">Sobre</button>
       </div>
     </form>
-</div>
+  </div>
 
-<section>
-  <h2>Explore Nossa Coleção Exclusiva De Acessórios</h2>
+  <section>
+    <h2>Explore Nossa Coleção Exclusiva De Acessórios</h2>
+
+    <div class="produtos">
+
+      <a href="acessorios1.html" class="produto">
+        <img src="fotos/acessorios/acessorios1.jpg" alt="Acessório Minions">
+        <h3>Minions</h3>
+        <p class="preco">R$ 87,90 à vista</p>
+        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+      </a>
+
+      <a href="acessorios2.html" class="produto">
+        <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
+        <h3>Espião</h3>
+        <p class="preco">R$ 87,90 à vista</p>
+        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+      </a>
+
+      <a href="acessorios4.html" class="produto">
+        <img src="fotos/acessorios/acessorios4.jpeg" alt="Acessório Mágico">
+        <h3>Mágico</h3>
+        <p class="preco">R$ 87,90 à vista</p>
+        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+      </a>
+  </div>
 
   <div class="produtos">
+      <a href="acessorios6.html" class="produto">
+        <img src="fotos/acessorios/acessorios6.jpeg" alt="Acessório Chapéu de Bruxa">
+        <h3>Chapéu de Bruxa</h3>
+        <p class="preco">R$ 87,90 à vista</p>
+        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+      </a>
 
-    <a href="acessorios1.html" class="produto">
-      <img src="fotos/acessorios/acessorios1.jpg" alt="Acessório Minions">
-      <h3>Minions</h3>
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-    </a>
+      <a href="perucaverde.html" class="produto">
+        <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Acessório Peruca Verde e Amarelo">
+        <h3>Peruca verde e amarelo</h3>
+        <p class="preco">R$ 87,90 à vista</p>
+        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+      </a>
 
-    <a href="acessorios2.html" class="produto">
-      <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
-      <h3>Espião</h3>
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-    </a>
+    </div>
+  </section>
 
-    <a href="acessorios4.html" class="produto">
-      <img src="fotos/acessorios/acessorios4.jpeg" alt="Acessório Mágico">
-      <h3>Mágico</h3>
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-    </a>
-</div>
-
-<div class="produtos">
-    <a href="acessorios6.html" class="produto">
-      <img src="fotos/acessorios/acessorios6.jpeg" alt="Acessório Chapéu de Bruxa">
-      <h3>Chapéu de Bruxa</h3>
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-    </a>
-
-    <a href="perucaverde.html" class="produto">
-      <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Acessório Peruca Verde e Amarelo">
-      <h3>Peruca verde e amarelo</h3>
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-    </a>
-
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
-
-<script>
-
-  const produtos = [
-    { nome: "Mickey Mouse", pagina: "mickeykids.html" },
-    { nome: "Harry Potter", pagina: "harrypotter.html" },
-    { nome: "Maskara", pagina: "maskara.html" },
-    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.html" },
-    { nome: "David Bowie", pagina: "davidbowie.html" },
-    { nome: "Chapéu de Bruxa", pagina: "acessorios6.html" },
-
-    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.html" },
-    { nome: "Mágica", pagina: "magica.html" },
-    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.html" },
-    { nome: "Super Mario FEM", pagina: "mariofem.html" },
-
-    { nome: "Pânico", pagina: "panico.html" },
-    { nome: "Pikachu", pagina: "pikachu.html" },
-    { nome: "Luigi", pagina: "luigi.html" },
-    { nome: "Barney", pagina: "barney.html" },
-
-    { nome: "Minions", pagina: "acessorios1.html" },
-    { nome: "Espião", pagina: "acessorios2.html" },
-    { nome: "Mágico", pagina: "acessorios4.html" },
-    { nome: "Peruca verde e amarelo", pagina: "perucaverde.html" },
-
-    { nome: "Palhaço", pagina: "palhacokids.html" },
-    { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
-  ];
-
-
-  const campoBusca = document.getElementById("campo-busca");
-  const sugestoes = document.getElementById("sugestoes");
-
-
-  campoBusca.addEventListener("input", function() {
-
-    const texto = campoBusca.value.toLowerCase().trim();
-
-    sugestoes.innerHTML = "";
-
-    if (texto === "") {
-      return;
-    }
-
-
-    const resultados = produtos.filter(function(produto) {
-
-      return produto.nome.toLowerCase().includes(texto);
-
-    });
-
-
-    resultados.forEach(function(produto) {
-
-      const sugestao = document.createElement("div");
-
-      sugestao.textContent = produto.nome;
-
-      sugestao.classList.add("sugestao");
-
-
-      sugestao.addEventListener("click", function() {
-
-        window.location.href = produto.pagina;
-
-      });
-
-
-      sugestoes.appendChild(sugestao);
-
-    });
-
-  });
-
-</script>
+  <footer>
+    <p>© 2026 Crown Costumes</p>
+  </footer>
 
 </body>
 </html>

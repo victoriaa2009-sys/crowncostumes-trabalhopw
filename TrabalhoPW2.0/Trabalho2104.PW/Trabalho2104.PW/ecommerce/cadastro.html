@@ -7,6 +7,8 @@
   <link href="estilos.css" rel="stylesheet">
 </head>
 
+<script src="script.js"></script>
+
 <body class="pagina-form">
 
   <div class="login-container">
@@ -39,65 +41,6 @@
 
   </div>
 
-  <script>
-
-    const formCadastro = document.getElementById("formCadastro");
-    const mensagemCadastro = document.getElementById("mensagemCadastro");
-
-    formCadastro.addEventListener("submit", function(event) {
-
-      event.preventDefault();
-
-      let faltando = [];
-
-      const nome = document.getElementById("nome").value.trim();
-      const usuario = document.getElementById("usuario").value.trim();
-      const senha = document.getElementById("senha").value.trim();
-      const cpf = document.getElementById("cpf").value.trim();
-      const dataNascimento = document.getElementById("dataNascimento").value;
-      const email = document.getElementById("email").value.trim();
-
-      if (nome === "") {
-        faltando.push("Nome");
-      }
-
-      if (usuario === "") {
-        faltando.push("Usuário");
-      }
-
-      if (senha === "") {
-        faltando.push("Senha");
-      }
-
-      if (cpf === "") {
-        faltando.push("CPF");
-      }
-
-      if (dataNascimento === "") {
-        faltando.push("Data de nascimento");
-      }
-
-      if (email === "") {
-        faltando.push("Email");
-      }
-
-      if (faltando.length > 0) {
-
-        mensagemCadastro.textContent =
-          "Faltou preencher: " + faltando.join(", ") + ".";
-
-      } else {
-
-        mensagemCadastro.textContent = "";
-
-        alert("Cadastro realizado com sucesso!");
-
-      }
-
-    });
-
-  </script>
 
 </body>
 </html>
-```

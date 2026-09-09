@@ -7,6 +7,8 @@
   <link href="estilos.css" rel="stylesheet">
 </head>
 
+<script src="script.js"></script>
+
 <body>
 
   <div class="topo">
@@ -30,190 +32,93 @@
         <button formaction="sobre.html">Sobre</button>
       </div>
     </form>
-</div>
-
-<section class="produto-container">
-
-  <div class="produto-img">
-    <img src="fotos/unissex/uni7.webp" alt="Fantasia de Harry Potter">
   </div>
 
-  <div class="produto-info">
-    <h2>Fantasia de Harry Potter</h2>
+  <section class="produto-container" id="harrypotter">
 
-    <p class="preco">R$ 200,00 à vista</p>
-    <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+    <div class="produto-img">
+      <img src="fotos/unissex/uni7.webp" alt="Fantasia de Harry Potter">
+    </div>
 
-    <p class="entrega">Entrega em até 5 dias úteis</p>
+    <div class="produto-info">
+      <h2>Fantasia de Harry Potter</h2>
 
-    <label for="quantidade">Quantidade:</label>
-    <input type="number" id="quantidade" value="1" min="1">
+      <p class="preco">R$ 200,00 à vista</p>
+      <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
 
-    <p id="valorParcial" class="valor-parcial">
-      Valor parcial: R$ 200,00
-    </p>
+      <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <h3>Formas de pagamento</h3>
-    <ul>
-      <li>Cartão de crédito (Visa e Mastercard)</li>
-      <li>Cartão de débito</li>
-      <li>PIX</li>
-      <li>Boleto bancário</li>
-    </ul>
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" value="1" min="1">
 
-    <button class="btn">Adicionar ao Carrinho</button>
-  </div>
+      <p id="valorParcial" class="valor-parcial">
+        Valor parcial: R$ 200,00
+      </p>
 
-</section>
+      <h3>Formas de pagamento</h3>
+      <ul>
+        <li>Cartão de crédito (Visa e Mastercard)</li>
+        <li>Cartão de débito</li>
+        <li>PIX</li>
+        <li>Boleto bancário</li>
+      </ul>
 
-<section class="produto-descricao">
-  <div>
-    <h2>Descrição do Produto</h2>
-    <p>
-      Fantasia completa de Harry Potter, perfeita para festas, aniversários
-      e eventos temáticos. Confortável, leve e divertida.
-    </p>
-  </div>
-  <div>
-    <h2>Características</h2>
-    <ul>
-      <li>Material: poliéster confortável</li>
-      <li>Tamanhos: 15 a 60+ anos</li>
-      <li>Inclui: capa + gravata + varinha</li>
-      <li>Cor: preto e vermelho</li>
-    </ul>
-  </div>
-</section>
+      <button class="btn">Adicionar ao Carrinho</button>
+    </div>
 
-<section>
-  <h2>Avaliações</h2>
+  </section>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐⭐⭐</p>
-    <p>"Súper confortável! Amei."</p>
-    <p>12/03/2026</p>
-  </div>
+  <section class="produto-descricao">
+    <div>
+      <h2>Descrição do Produto</h2>
+      <p>
+        Fantasia completa de Harry Potter, perfeita para festas, aniversários
+        e eventos temáticos. Confortável, leve e divertida.
+      </p>
+    </div>
+    <div>
+      <h2>Características</h2>
+      <ul>
+        <li>Material: poliéster confortável</li>
+        <li>Tamanhos: 15 a 60+ anos</li>
+        <li>Inclui: capa + gravata + varinha</li>
+        <li>Cor: preto e vermelho</li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐</p>
-    <p>"Demorou um pouco pra chegar, mas gostei."</p>
-    <p>05/03/2026</p>
-  </div>
+  <section>
+    <h2>Avaliações</h2>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐⭐⭐</p>
-    <p>"Amei! Igual à foto."</p>
-    <p>28/02/2026</p>
-  </div>
+    <div class="avaliacao">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"Súper confortável! Amei."</p>
+      <p>12/03/2026</p>
+    </div>
 
-  <div class="avaliacao">
-    <p>⭐⭐⭐</p>
-    <p>"Boa, mas o pacote veio rasgado."</p>
-    <p>20/02/2026</p>
-  </div>
+    <div class="avaliacao">
+      <p>⭐⭐⭐</p>
+      <p>"Demorou um pouco pra chegar, mas gostei."</p>
+      <p>05/03/2026</p>
+    </div>
 
-</section>
+    <div class="avaliacao">
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>"Amei! Igual à foto."</p>
+      <p>28/02/2026</p>
+    </div>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+    <div class="avaliacao">
+      <p>⭐⭐⭐</p>
+      <p>"Boa, mas o pacote veio rasgado."</p>
+      <p>20/02/2026</p>
+    </div>
 
-<script>
+  </section>
 
-  const produtos = [
-    { nome: "Mickey Mouse", pagina: "mickeykids.html" },
-    { nome: "Harry Potter", pagina: "harrypotter.html" },
-    { nome: "Maskara", pagina: "maskara.html" },
-    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.html" },
-    { nome: "David Bowie", pagina: "davidbowie.html" },
-    { nome: "Chapéu de Bruxa", pagina: "acessorios6.html" },
-
-    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.html" },
-    { nome: "Mágica", pagina: "magica.html" },
-    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.html" },
-    { nome: "Super Mario FEM", pagina: "mariofem.html" },
-
-    { nome: "Pânico", pagina: "panico.html" },
-    { nome: "Pikachu", pagina: "pikachu.html" },
-    { nome: "Luigi", pagina: "luigi.html" },
-    { nome: "Barney", pagina: "barney.html" },
-
-    { nome: "Minions", pagina: "acessorios1.html" },
-    { nome: "Espião", pagina: "acessorios2.html" },
-    { nome: "Mágico", pagina: "acessorios4.html" },
-    { nome: "Peruca verde e amarelo", pagina: "perucaverde.html" },
-
-    { nome: "Palhaço", pagina: "palhacokids.html" },
-    { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
-  ];
-
-
-  const campoBusca = document.getElementById("campo-busca");
-  const sugestoes = document.getElementById("sugestoes");
-
-
-  campoBusca.addEventListener("input", function() {
-
-    const texto = campoBusca.value.toLowerCase().trim();
-
-    sugestoes.innerHTML = "";
-
-    if (texto === "") {
-      return;
-    }
-
-
-    const resultados = produtos.filter(function(produto) {
-
-      return produto.nome.toLowerCase().includes(texto);
-
-    });
-
-
-    resultados.forEach(function(produto) {
-
-      const sugestao = document.createElement("div");
-
-      sugestao.textContent = produto.nome;
-
-      sugestao.classList.add("sugestao");
-
-
-      sugestao.addEventListener("click", function() {
-
-        window.location.href = produto.pagina;
-
-      });
-
-
-      sugestoes.appendChild(sugestao);
-
-    });
-
-  });
-
-  const quantidade = document.getElementById("quantidade");
-const valorParcial = document.getElementById("valorParcial");
-
-const precoProduto = 200;
-
-quantidade.addEventListener("input", function() {
-
-  let qtd = parseInt(quantidade.value);
-
-  if (qtd < 1 || isNaN(qtd)) {
-    qtd = 1;
-    quantidade.value = 1;
-  }
-
-  const total = precoProduto * qtd;
-
-  valorParcial.textContent =
-    "Valor parcial: R$ " + total.toFixed(2).replace(".", ",");
-
-});
-
-</script>
+  <footer>
+    <p>© 2026 Crown Costumes</p>
+  </footer>
 
 </body>
 </html>

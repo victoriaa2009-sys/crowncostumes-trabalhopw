@@ -6,6 +6,8 @@
   <link href="estilos.css" rel="stylesheet">
 </head>
 
+<script src="script.js"></script>
+
 <body>
 
   <div class="topo">
@@ -71,82 +73,6 @@
 <footer>
   <p>© 2026 Crown Costumes</p>
 </footer>
-
-<script>
-
-  const produtos = [
-    { nome: "Mickey Mouse", pagina: "mickeykids.html" },
-    { nome: "Harry Potter", pagina: "harrypotter.html" },
-    { nome: "Maskara", pagina: "maskara.html" },
-    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.html" },
-    { nome: "David Bowie", pagina: "davidbowie.html" },
-    { nome: "Chapéu de Bruxa", pagina: "acessorios6.html" },
-
-    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.html" },
-    { nome: "Mágica", pagina: "magica.html" },
-    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.html" },
-    { nome: "Super Mario FEM", pagina: "mariofem.html" },
-
-    { nome: "Pânico", pagina: "panico.html" },
-    { nome: "Pikachu", pagina: "pikachu.html" },
-    { nome: "Luigi", pagina: "luigi.html" },
-    { nome: "Barney", pagina: "barney.html" },
-
-    { nome: "Minions", pagina: "acessorios1.html" },
-    { nome: "Espião", pagina: "acessorios2.html" },
-    { nome: "Mágico", pagina: "acessorios4.html" },
-    { nome: "Peruca verde e amarelo", pagina: "perucaverde.html" },
-
-    { nome: "Palhaço", pagina: "palhacokids.html" },
-    { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
-  ];
-
-
-  const campoBusca = document.getElementById("campo-busca");
-  const sugestoes = document.getElementById("sugestoes");
-
-
-  campoBusca.addEventListener("input", function() {
-
-    const texto = campoBusca.value.toLowerCase().trim();
-
-    sugestoes.innerHTML = "";
-
-    if (texto === "") {
-      return;
-    }
-
-
-    const resultados = produtos.filter(function(produto) {
-
-      return produto.nome.toLowerCase().includes(texto);
-
-    });
-
-
-    resultados.forEach(function(produto) {
-
-      const sugestao = document.createElement("div");
-
-      sugestao.textContent = produto.nome;
-
-      sugestao.classList.add("sugestao");
-
-
-      sugestao.addEventListener("click", function() {
-
-        window.location.href = produto.pagina;
-
-      });
-
-
-      sugestoes.appendChild(sugestao);
-
-    });
-
-  });
-
-</script>
 
 </body>
 </html>
