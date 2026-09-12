@@ -1,92 +1,353 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+  <meta charset="UTF-8">
   <title>Crown Costumes</title>
   <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
 </head>
 
-<body>
-  
-  <div class="topo">
-    <form class="barra" action="carrinho.html">
 
+<body>
+
+  <div class="topo">
+
+    <form class="barra" action="carrinho.html">
       <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.html" class="nome-barra">Crown Costumes</a>
+        <img
+          src="fotos/logopreta.png"
+          class="logopreta"
+          alt="logo preta"
+        >
+
+        <a
+          href="paginainicial.html"
+          class="nome-barra"
+        >
+          Crown Costumes
+        </a>
       </div>
+
+
       <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
+        <span class="busca-container">
+          <input
+            type="text"
+            placeholder="Buscar fantasias..."
+            name="busca"
+            id="campo-busca"
+            autocomplete="off"
+          >
+          <input
+            type="submit"
+            value="Buscar"
+            class="btn-busca"
+          >
+          <div id="sugestoes"></div>
+
+        </span>
       </div>
+
+
       <div class="acoes">
-        <button formaction="login.html">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.html">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
+
+        <button formaction="login.html">
+          Login
+        </button>
+
+        <button formaction="cadastro.html">
+          Cadastro
+        </button>
+
+        <button formaction="carrinho.html">
+          Carrinho
+        </button>
+
+        <button formaction="sobre.html">
+          Sobre
+        </button>
+
       </div>
     </form>
-</div>
-
-<section>
-  <h2 class="carrinho-titulo">Seu Carrinho</h2>
-
-  <table class="carrinho">
-    <tr>
-      <th>Produto</th>
-      <th>Nome</th>
-      <th>Qtd</th>
-      <th>Preço</th>
-      <th>Total</th>
-    </tr>
-
-    <tr>
-      <td><img src="fotos/femininas/edward.jpeg" width="60" alt="Edward"></td>
-      <td>Edward, de Edward Mãos de Tesoura</td>
-      <td>1</td>
-      <td>R$ 148,98</td>
-      <td>R$ 148,98</td>
-    </tr>
-
-    <tr>
-      <td><img src="fotos/masculinas/anos80.jpg" width="60" alt="David Bowie"></td>
-      <td>David Bowie</td>
-      <td>1</td>
-      <td>R$ 148,98</td>
-      <td>R$ 148,98</td>
-    </tr>
-
-    <tr>
-      <td><img src="fotos/kids/palhacokids.webp" width="60" alt="Palhaço Infantil"></td>
-      <td>Palhaço Infantil</td>
-      <td>1</td>
-      <td>R$ 148,98</td>
-      <td>R$ 148,98</td>
-    </tr>
-  </table>
-
-  <div class="resumo">
-    <h3>Resumo do pedido</h3>
-
-    <label>CEP:</label>
-    <input type="text" placeholder="Digite seu CEP">
-
-    <p>Frete: R$ 30,00</p>
-    <h2>Total: R$ 476,94</h2>
-
-    <button class="btn">Finalizar Compra</button>
   </div>
-</section>
 
-<footer>
-  <p>© 2026 Crown Costume</p>
-</footer>
 
-<script src="script.js"></script>
+  <section>
 
+    <h2 class="carrinho-titulo">
+      Seu Carrinho
+    </h2>
+
+    <table class="carrinho">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th>Total</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+
+      <tbody id="listaCarrinho">
+      </tbody>
+    </table>
+
+    <div class="resumo">
+
+      <h3>
+        Resumo do pedido
+      </h3>
+
+      <label for="cep">
+        CEP:
+      </label>
+
+      <input
+        type="text"
+        id="cep"
+        placeholder="Digite seu CEP"
+      >
+
+      <p>
+        Frete:
+        <span id="frete">
+          R$ 30,00
+        </span>
+      </p>
+
+      <h2>
+        Total:
+        <span id="totalCarrinho">
+          R$ 30,00
+        </span>
+      </h2>
+
+      <button
+        class="btn"
+        id="finalizarCompra"
+      >
+        Finalizar Compra
+      </button>
+    </div>
+  </section>
+
+
+  <footer>
+
+    <p>
+      © 2026 Crown Costumes
+    </p>
+
+  </footer>
+
+  <script>
+
+    const listaCarrinho =
+      document.getElementById("listaCarrinho");
+
+    const totalCarrinho =
+      document.getElementById("totalCarrinho");
+
+    const frete =
+      document.getElementById("frete");
+
+    const botaoFinalizar =
+      document.getElementById("finalizarCompra");
+
+    // PEGANDO OS PRODUTO
+
+    let carrinho = JSON.parse(
+      sessionStorage.getItem("carrinho")
+    ) || [];
+
+    // FUNÇÃO PARA FORMATAR PREÇO
+
+    function formatarPreco(valor) {
+
+      return "R$ " +
+        valor.toFixed(2).replace(".", ",");
+
+    }
+
+
+    // MOSTRAR OS PRODUTOS
+
+
+    function mostrarCarrinho() {
+
+      listaCarrinho.innerHTML = "";
+
+
+      if (carrinho.length === 0) {
+
+        listaCarrinho.innerHTML = `
+          <tr>
+            <td colspan="6">
+              Seu carrinho está vazio.
+            </td>
+          </tr>
+        `;
+
+        atualizarTotal();
+
+        return;
+      }
+
+
+      carrinho.forEach(function(produto, indice) {
+        const totalProduto =
+          produto.preco * produto.quantidade;
+
+        const linha =
+          document.createElement("tr");
+
+        linha.innerHTML = `
+
+          <td>
+            <img
+              src="${produto.imagem}"
+              width="60"
+              alt="${produto.nome}"
+            >
+          </td>
+
+
+          <td>
+            ${produto.nome}
+          </td>
+
+
+          <td>
+            <button
+              class="btn"
+              onclick="diminuirQuantidade(${indice})"
+            >
+              -
+            </button>
+
+
+            <span style="margin: 0 10px;">
+              ${produto.quantidade}
+            </span>
+
+
+            <button
+              class="btn"
+              onclick="aumentarQuantidade(${indice})"
+            >
+              +
+            </button>
+          </td>
+
+
+          <td>
+            ${formatarPreco(produto.preco)}
+          </td>
+
+
+          <td>
+            ${formatarPreco(totalProduto)}
+          </td>
+
+
+          <td>
+            <button
+              class="btn"
+              onclick="removerProduto(${indice})"
+            >
+              Remover
+            </button>
+          </td>
+
+        `;
+
+        listaCarrinho.appendChild(linha);
+      });
+
+      atualizarTotal();
+
+    }
+
+    function aumentarQuantidade(indice) {
+      carrinho[indice].quantidade++;
+      salvarCarrinho();
+      mostrarCarrinho();
+    }
+
+    function diminuirQuantidade(indice) {
+
+      if (carrinho[indice].quantidade > 1) {
+        carrinho[indice].quantidade--;
+      } else {
+        carrinho.splice(indice, 1);
+      }
+
+
+      salvarCarrinho();
+      mostrarCarrinho();
+
+    }
+
+    function removerProduto(indice) {
+      carrinho.splice(indice, 1);
+      salvarCarrinho();
+      mostrarCarrinho();
+    }
+
+    function salvarCarrinho() {
+      sessionStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+      );
+
+    }
+
+    function atualizarTotal() {
+
+      let subtotal = 0;
+      carrinho.forEach(function(produto) {
+        subtotal +=
+          produto.preco * produto.quantidade;
+      });
+
+      let valorFrete = 30;
+
+      if (carrinho.length === 0) {
+        valorFrete = 0;
+      }
+
+      const total =
+        subtotal + valorFrete;
+
+      frete.textContent =
+        formatarPreco(valorFrete);
+
+      totalCarrinho.textContent =
+        formatarPreco(total);
+
+    }
+
+    botaoFinalizar.addEventListener(
+      "click",
+      function() {
+
+        if (carrinho.length === 0) {
+          alert(
+            "Seu carrinho está vazio!"
+          );
+          return;
+        }
+
+        alert(
+          "Compra finalizada com sucesso!"
+        );
+      }
+    );
+
+    mostrarCarrinho();
+
+  </script>
 </body>
 </html>

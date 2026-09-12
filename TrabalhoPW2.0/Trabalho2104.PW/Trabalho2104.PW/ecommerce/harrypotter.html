@@ -1,6 +1,6 @@
-/* essa página está completa, usar como modelo*/
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Crown Costumes</title>
@@ -16,44 +16,80 @@
         <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
         <a href="paginainicial.html" class="nome-barra">Crown Costumes</a>
       </div>
+
       <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
+        <span class="busca-container">
+          <input
+            type="text"
+            placeholder="Buscar fantasias..."
+            name="busca"
+            id="campo-busca"
+            autocomplete="off"
+          >
+
+          <input
+            type="submit"
+            value="Buscar"
+            class="btn-busca"
+          >
+
+          <div id="sugestoes"></div>
+        </span>
       </div>
+
       <div class="acoes">
         <button formaction="login.html">Login</button>
         <button formaction="cadastro.html">Cadastro</button>
         <button formaction="carrinho.html">Carrinho</button>
         <button formaction="sobre.html">Sobre</button>
       </div>
+
     </form>
   </div>
+
 
   <section class="produto-container" id="harrypotter">
 
     <div class="produto-img">
-      <img src="fotos/unissex/uni7.webp" alt="Fantasia de Harry Potter">
+      <img
+        src="fotos/unissex/uni7.webp"
+        alt="Fantasia de Harry Potter"
+      >
     </div>
 
+
     <div class="produto-info">
+
       <h2>Fantasia de Harry Potter</h2>
 
       <p class="preco">R$ 200,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+      <p class="parcelado">
+        ou 2x de R$ 100,00 sem juros
+      </p>
+
+      <p class="entrega">
+        Entrega em até 5 dias úteis
+      </p>
+
 
       <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1">
+
+      <input
+        type="number"
+        id="quantidade"
+        value="1"
+        min="1"
+      >
+
 
       <p id="valorParcial" class="valor-parcial">
         Valor parcial: R$ 200,00
       </p>
 
+
       <h3>Formas de pagamento</h3>
+
       <ul>
         <li>Cartão de crédito (Visa e Mastercard)</li>
         <li>Cartão de débito</li>
@@ -61,31 +97,48 @@
         <li>Boleto bancário</li>
       </ul>
 
-      <button class="btn">Adicionar ao Carrinho</button>
+
+      <button class="btn" id="adicionarCarrinho">
+        Adicionar ao Carrinho
+      </button>
+
     </div>
 
   </section>
 
+
   <section class="produto-descricao">
+
     <div>
+
       <h2>Descrição do Produto</h2>
+
       <p>
-        Fantasia completa de Harry Potter, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida.
+        Fantasia completa de Harry Potter, perfeita para festas,
+        aniversários e eventos temáticos. Confortável, leve e divertida.
       </p>
+
     </div>
+
+
     <div>
+
       <h2>Características</h2>
+
       <ul>
         <li>Material: poliéster confortável</li>
         <li>Tamanhos: 15 a 60+ anos</li>
         <li>Inclui: capa + gravata + varinha</li>
         <li>Cor: preto e vermelho</li>
       </ul>
+
     </div>
+
   </section>
 
+
   <section>
+
     <h2>Avaliações</h2>
 
     <div class="avaliacao">
@@ -114,11 +167,99 @@
 
   </section>
 
+
   <footer>
     <p>© 2026 Crown Costumes</p>
   </footer>
 
-  <script src="script.js"></script>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // Preço do produto
+    const precoProduto = 200;
+
+    // Campo de quantidade
+    const quantidade = document.getElementById("quantidade");
+
+    // Texto que mostra o valor parcial
+    const valorParcial = document.getElementById("valorParcial");
+
+    // Botão de adicionar
+    const botaoAdicionar = document.getElementById("adicionarCarrinho");
+
+
+    // Atualiza o valor conforme a quantidade escolhida
+    quantidade.addEventListener("input", function() {
+
+      let qtd = Number(quantidade.value);
+
+      if (qtd < 1 || isNaN(qtd)) {
+        qtd = 1;
+        quantidade.value = 1;
+      }
+
+      const total = precoProduto * qtd;
+
+      valorParcial.textContent =
+        "Valor parcial: R$ " +
+        total.toFixed(2).replace(".", ",");
+
+    });
+
+
+    // Quando clicar em Adicionar ao Carrinho
+    botaoAdicionar.addEventListener("click", function() {
+
+      const qtd = Number(quantidade.value);
+
+      // Criamos o produto
+      const produto = {
+        nome: "Fantasia de Harry Potter",
+        preco: precoProduto,
+        quantidade: qtd,
+        imagem: "fotos/unissex/uni7.webp"
+      };
+
+
+      // Pegamos os produtos que já estão no carrinho
+      let carrinho = JSON.parse(
+        sessionStorage.getItem("carrinho")
+      ) || [];
+
+
+      // Verifica se o produto já está no carrinho
+      const produtoExistente = carrinho.find(
+        item => item.nome === produto.nome
+      );
+
+
+      if (produtoExistente) {
+
+        // Se já existe, soma a quantidade
+        produtoExistente.quantidade += qtd;
+
+      } else {
+
+        // Se não existe, adiciona o produto
+        carrinho.push(produto);
+
+      }
+
+
+      // Salva o carrinho durante a sessão
+      sessionStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+      );
+
+
+      alert("Produto adicionado ao carrinho!");
+
+
+    });
+
+  </script>
 
 </body>
 </html>
