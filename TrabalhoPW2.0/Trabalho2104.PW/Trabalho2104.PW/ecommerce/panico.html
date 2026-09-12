@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,38 +15,45 @@
         <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
         <a href="paginainicial.html" class="nome-barra">Crown Costumes</a>
       </div>
+
       <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
+        <span class="busca-container">
+          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
+          <input type="submit" value="Buscar" class="btn-busca">
+          <div id="sugestoes"></div>
+        </span>
       </div>
+
       <div class="acoes">
         <button formaction="login.html">Login</button>
         <button formaction="cadastro.html">Cadastro</button>
         <button formaction="carrinho.html">Carrinho</button>
         <button formaction="sobre.html">Sobre</button>
       </div>
+
     </form>
   </div>
 
   <section class="produto-container" id="panico">
 
     <div class="produto-img">
-      <img src="fotos/unissex/uni6.webp" alt="Fantasia do Panico">
+      <img src="fotos/unissex/uni6.webp" alt="Fantasia do Pânico">
     </div>
 
     <div class="produto-info">
-      <h2>Fantasia do Panico</h2>
+      <h2>Fantasia do Pânico</h2>
 
       <p class="preco">R$ 148,98 à vista</p>
-      <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+      <p class="parcelado">ou 2x de R$ 74,49 sem juros</p>
 
       <p class="entrega">Entrega em até 5 dias úteis</p>
 
       <label>Quantidade:</label>
-      <input type="number" value="1" min="1">
+      <input type="number" id="quantidade" value="1" min="1">
+
+      <p id="valorParcial" class="valor-parcial">
+        Valor parcial: R$ 148,98
+      </p>
 
       <h3>Formas de pagamento</h3>
       <ul>
@@ -57,28 +63,33 @@
         <li>Boleto bancário</li>
       </ul>
 
-      <button class="btn">Adicionar ao Carrinho</button>
+      <button class="btn" id="adicionarCarrinho">
+        Adicionar ao Carrinho
+      </button>
     </div>
 
   </section>
 
   <section class="produto-descricao">
+
     <div>
       <h2>Descrição do Produto</h2>
       <p>
-        Fantasia completa do Panico, perfeita para festas, aniversários
+        Fantasia completa do Pânico, perfeita para festas, aniversários
         e eventos temáticos. Confortável, leve e divertida.
       </p>
     </div>
+
     <div>
       <h2>Características</h2>
       <ul>
         <li>Material: poliéster confortável</li>
         <li>Tamanhos: 15 a 60+ anos</li>
         <li>Inclui: vestido + máscara</li>
-        <li>Cor: Preto + Branco</li>
+        <li>Cor: preto e branco</li>
       </ul>
     </div>
+
   </section>
 
   <section>
@@ -114,7 +125,58 @@
     <p>© 2026 Crown Costumes</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const precoProduto = 148.98;
+
+    const quantidade = document.getElementById("quantidade");
+    const valorParcial = document.getElementById("valorParcial");
+    const botaoAdicionar = document.getElementById("adicionarCarrinho");
+
+    quantidade.addEventListener("input", function () {
+
+      let qtd = Number(quantidade.value);
+
+      if (qtd < 1 || isNaN(qtd)) {
+        qtd = 1;
+        quantidade.value = 1;
+      }
+
+      const total = precoProduto * qtd;
+
+      valorParcial.textContent =
+        "Valor parcial: R$ " +
+        total.toFixed(2).replace(".", ",");
+    });
+
+    botaoAdicionar.addEventListener("click", function () {
+
+      const qtd = Number(quantidade.value);
+
+      const produto = {
+        nome: "Fantasia do Pânico",
+        preco: precoProduto,
+        quantidade: qtd,
+        imagem: "fotos/unissex/uni6.webp"
+      };
+
+      let carrinho =
+        JSON.parse(sessionStorage.getItem("carrinho")) || [];
+
+      const produtoExistente = carrinho.find(function (item) {
+        return item.nome === produto.nome;
+      });
+
+      if (produtoExistente) {
+        produtoExistente.quantidade += qtd;
+      } else {
+        carrinho.push(produto);
+      }
+
+      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+      alert("Produto adicionado ao carrinho!");
+    });
+  </script>
 
 </body>
 </html>

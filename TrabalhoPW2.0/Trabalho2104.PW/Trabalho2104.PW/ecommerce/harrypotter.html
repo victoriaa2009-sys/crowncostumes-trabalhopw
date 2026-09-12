@@ -173,24 +173,16 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
   <script>
 
-    // Preço do produto
     const precoProduto = 200;
 
-    // Campo de quantidade
     const quantidade = document.getElementById("quantidade");
-
-    // Texto que mostra o valor parcial
     const valorParcial = document.getElementById("valorParcial");
-
-    // Botão de adicionar
     const botaoAdicionar = document.getElementById("adicionarCarrinho");
 
 
-    // Atualiza o valor conforme a quantidade escolhida
-    quantidade.addEventListener("input", function() {
+    quantidade.addEventListener("input", function () {
 
       let qtd = Number(quantidade.value);
 
@@ -208,12 +200,10 @@
     });
 
 
-    // Quando clicar em Adicionar ao Carrinho
-    botaoAdicionar.addEventListener("click", function() {
+    botaoAdicionar.addEventListener("click", function () {
 
       const qtd = Number(quantidade.value);
 
-      // Criamos o produto
       const produto = {
         nome: "Fantasia de Harry Potter",
         preco: precoProduto,
@@ -222,32 +212,22 @@
       };
 
 
-      // Pegamos os produtos que já estão no carrinho
-      let carrinho = JSON.parse(
-        sessionStorage.getItem("carrinho")
-      ) || [];
+      let carrinho =
+        JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
 
-      // Verifica se o produto já está no carrinho
-      const produtoExistente = carrinho.find(
-        item => item.nome === produto.nome
-      );
+      const produtoExistente =
+        carrinho.find(function (item) {
+          return item.nome === produto.nome;
+        });
 
 
       if (produtoExistente) {
-
-        // Se já existe, soma a quantidade
         produtoExistente.quantidade += qtd;
-
       } else {
-
-        // Se não existe, adiciona o produto
         carrinho.push(produto);
-
       }
 
-
-      // Salva o carrinho durante a sessão
       sessionStorage.setItem(
         "carrinho",
         JSON.stringify(carrinho)
@@ -256,10 +236,8 @@
 
       alert("Produto adicionado ao carrinho!");
 
-
     });
 
   </script>
-
 </body>
 </html>
