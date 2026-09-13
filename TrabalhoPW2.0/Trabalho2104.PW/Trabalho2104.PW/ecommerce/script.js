@@ -1,6 +1,9 @@
-/*============================================================ Pesquisa e Autocomplete ============================================================*/
+/*============================================================
+PESQUISA E AUTOCOMPLETE
+============================================================*/
 
 const produtos = [
+
     { nome: "Mickey Mouse", pagina: "mickeykids.html" },
     { nome: "Harry Potter", pagina: "harrypotter.html" },
     { nome: "Maskara", pagina: "maskara.html" },
@@ -25,38 +28,62 @@ const produtos = [
 
     { nome: "Palhaço", pagina: "palhacokids.html" },
     { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
+
 ];
 
-const campoBusca = document.getElementById("campo-busca");
-const sugestoes = document.getElementById("sugestoes");
+
+const campoBusca =
+    document.getElementById("campo-busca");
+
+const sugestoes =
+    document.getElementById("sugestoes");
+
 
 if (campoBusca && sugestoes) {
 
     campoBusca.addEventListener("input", function() {
 
-        const texto = campoBusca.value.toLowerCase().trim();
+        const texto =
+            campoBusca.value.toLowerCase().trim();
 
         sugestoes.innerHTML = "";
+
 
         if (texto === "") {
             return;
         }
 
-        const resultados = produtos.filter(function(produto) {
-            return produto.nome.toLowerCase().includes(texto);
-        });
+
+        const resultados =
+            produtos.filter(function(produto) {
+
+                return produto.nome
+                    .toLowerCase()
+                    .includes(texto);
+
+            });
+
 
         resultados.forEach(function(produto) {
 
-            const sugestao = document.createElement("div");
+            const sugestao =
+                document.createElement("div");
 
-            sugestao.textContent = produto.nome;
+
+            sugestao.textContent =
+                produto.nome;
+
 
             sugestao.classList.add("sugestao");
 
+
             sugestao.addEventListener("click", function() {
-                window.location.href = produto.pagina;
+
+                window.location.href =
+                    produto.pagina;
+
             });
+
 
             sugestoes.appendChild(sugestao);
 
@@ -67,26 +94,63 @@ if (campoBusca && sugestoes) {
 }
 
 
-/*============================================================ Login ============================================================*/
+/*============================================================
+LOGIN
+============================================================*/
 
-const formLogin = document.getElementById("formLogin");
+const formLogin =
+    document.getElementById("formLogin");
+
 
 if (formLogin) {
 
-    const usuario = document.getElementById("usuario");
-    const senha = document.getElementById("senha");
-    const mensagemLogin = document.getElementById("mensagemLogin");
+    const usuario =
+        document.getElementById("usuario");
+
+    const senha =
+        document.getElementById("senha");
+
+    const mensagemLogin =
+        document.getElementById("mensagemLogin");
+
 
     formLogin.addEventListener("submit", function(event) {
 
-        if (usuario.value.trim() === "" || senha.value.trim() === "") {
+
+        if (
+            usuario.value.trim() === "" &&
+            senha.value.trim() === ""
+        ) {
 
             event.preventDefault();
 
             mensagemLogin.textContent =
-                "É necessário digitar usuário e senha para prosseguir";
+                "Digite seu usuário e sua senha.";
 
-        } else {
+        }
+
+
+        else if (usuario.value.trim() === "") {
+
+            event.preventDefault();
+
+            mensagemLogin.textContent =
+                "Digite seu usuário.";
+
+        }
+
+
+        else if (senha.value.trim() === "") {
+
+            event.preventDefault();
+
+            mensagemLogin.textContent =
+                "Digite sua senha.";
+
+        }
+
+
+        else {
 
             mensagemLogin.textContent = "";
 
@@ -97,59 +161,82 @@ if (formLogin) {
 }
 
 
-/*============================================================ Cadastro ============================================================*/
+/*============================================================
+CADASTRO
+============================================================*/
 
-const formCadastro = document.getElementById("formCadastro");
+const formCadastro =
+    document.getElementById("formCadastro");
+
 
 if (formCadastro) {
 
     const mensagemCadastro =
         document.getElementById("mensagemCadastro");
 
+
     formCadastro.addEventListener("submit", function(event) {
 
         event.preventDefault();
 
+
         let faltando = [];
 
+
         const nome =
-            document.getElementById("nome").value.trim();
+            document.getElementById("nome")
+                .value.trim();
+
 
         const usuario =
-            document.getElementById("usuario").value.trim();
+            document.getElementById("usuario")
+                .value.trim();
+
 
         const senha =
-            document.getElementById("senha").value.trim();
+            document.getElementById("senha")
+                .value.trim();
+
 
         const cpf =
-            document.getElementById("cpf").value.trim();
+            document.getElementById("cpf")
+                .value.trim();
+
 
         const dataNascimento =
-            document.getElementById("dataNascimento").value;
+            document.getElementById("dataNascimento")
+                .value;
+
 
         const email =
-            document.getElementById("email").value.trim();
+            document.getElementById("email")
+                .value.trim();
 
 
         if (nome === "") {
             faltando.push("Nome");
         }
 
+
         if (usuario === "") {
             faltando.push("Usuário");
         }
+
 
         if (senha === "") {
             faltando.push("Senha");
         }
 
+
         if (cpf === "") {
             faltando.push("CPF");
         }
 
+
         if (dataNascimento === "") {
             faltando.push("Data de nascimento");
         }
+
 
         if (email === "") {
             faltando.push("Email");
@@ -159,13 +246,20 @@ if (formCadastro) {
         if (faltando.length > 0) {
 
             mensagemCadastro.textContent =
-                "Faltou preencher: " + faltando.join(", ") + ".";
+                "Faltou preencher: " +
+                faltando.join(", ") +
+                ".";
 
-        } else {
+        }
+
+
+        else {
 
             mensagemCadastro.textContent = "";
 
-            alert("Cadastro realizado com sucesso!");
+            alert(
+                "Cadastro realizado com sucesso!"
+            );
 
         }
 
@@ -173,7 +267,10 @@ if (formCadastro) {
 
 }
 
-/*============================================================ Quantidade e Valor Parcial ============================================================*/
+
+/*============================================================
+QUANTIDADE E VALOR PARCIAL
+============================================================*/
 
 const precos = {
 
@@ -188,7 +285,9 @@ const precos = {
     brancadenevekids: 148.98,
     davidbowie: 148.98,
     edwardfem: 150.00,
+
     harrypotter: 200.00,
+
     magica: 150.00,
     magico: 148.98,
     mariofem: 150.00,
@@ -198,7 +297,9 @@ const precos = {
     palhaco: 148.98,
     palhacokids: 148.98,
     panico: 148.98,
-    perucaverdessss: 87.90,
+
+    perucaverde: 87.90,
+
     pikachu: 200.00,
     piratakids: 168.78,
     woody: 148.98
@@ -206,37 +307,76 @@ const precos = {
 };
 
 
-const produto = document.querySelector(".produto-container");
-const quantidade = document.getElementById("quantidade");
-const valorParcial = document.getElementById("valorParcial");
+const produto =
+    document.querySelector(".produto-container");
+
+const quantidade =
+    document.getElementById("quantidade");
+
+const valorParcial =
+    document.getElementById("valorParcial");
 
 
-if (produto && quantidade && valorParcial) {
+if (
+    produto &&
+    quantidade &&
+    valorParcial
+) {
 
-    const idProduto = produto.id;
-
-    const precoProduto = precos[idProduto];
-
-
-    quantidade.addEventListener("input", function() {
-
-        let qtd = parseInt(quantidade.value);
-
-        if (qtd < 1 || isNaN(qtd)) {
-
-            qtd = 1;
-            quantidade.value = 1;
-
-        }
+    const idProduto =
+        produto.id;
 
 
-        const total = precoProduto * qtd;
+    const precoProduto =
+        precos[idProduto];
 
 
-        valorParcial.textContent =
-            "Valor parcial: R$ " +
-            total.toFixed(2).replace(".", ",");
+    if (precoProduto === undefined) {
 
-    });
+        console.error(
+            "Preço não encontrado para o produto: " +
+            idProduto
+        );
+
+    }
+
+
+    else {
+
+        quantidade.addEventListener(
+            "input",
+            function() {
+
+
+                let qtd =
+                    parseInt(quantidade.value);
+
+
+                if (
+                    isNaN(qtd) ||
+                    qtd < 1
+                ) {
+
+                    qtd = 1;
+
+                    quantidade.value = 1;
+
+                }
+
+
+                const total =
+                    precoProduto * qtd;
+
+
+                valorParcial.textContent =
+                    "Valor parcial: R$ " +
+                    total
+                        .toFixed(2)
+                        .replace(".", ",");
+
+            }
+        );
+
+    }
 
 }
