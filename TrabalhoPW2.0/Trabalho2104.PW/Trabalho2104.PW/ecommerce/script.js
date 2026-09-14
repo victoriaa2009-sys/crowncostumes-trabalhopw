@@ -271,7 +271,6 @@ if (formCadastro) {
 /*============================================================
 QUANTIDADE E VALOR PARCIAL
 ============================================================*/
-
 const precos = {
 
     acessorios1: 87.90,
@@ -285,9 +284,7 @@ const precos = {
     brancadenevekids: 148.98,
     davidbowie: 148.98,
     edwardfem: 150.00,
-
     harrypotter: 200.00,
-
     magica: 150.00,
     magico: 148.98,
     mariofem: 150.00,
@@ -297,9 +294,7 @@ const precos = {
     palhaco: 148.98,
     palhacokids: 148.98,
     panico: 148.98,
-
-    perucaverde: 87.90,
-
+    perucaverdessss: 87.90,
     pikachu: 200.00,
     piratakids: 168.78,
     woody: 148.98
@@ -307,76 +302,53 @@ const precos = {
 };
 
 
-const produto =
-    document.querySelector(".produto-container");
+const produto = document.querySelector(".produto-container");
 
-const quantidade =
-    document.getElementById("quantidade");
+const quantidade = document.getElementById("quantidade");
 
-const valorParcial =
-    document.getElementById("valorParcial");
+const preco = document.getElementById("preco");
 
-
-if (
-    produto &&
-    quantidade &&
-    valorParcial
-) {
-
-    const idProduto =
-        produto.id;
+const valorParcial = document.getElementById("valorParcial");
 
 
-    const precoProduto =
-        precos[idProduto];
+if (produto && quantidade && preco) {
+
+    const idProduto = produto.id;
+
+    const precoProduto = precos[idProduto];
 
 
-    if (precoProduto === undefined) {
+    quantidade.addEventListener("input", function() {
 
-        console.error(
-            "Preço não encontrado para o produto: " +
-            idProduto
-        );
-
-    }
+        let qtd = parseInt(quantidade.value);
 
 
-    else {
+        if (qtd < 1 || isNaN(qtd)) {
 
-        quantidade.addEventListener(
-            "input",
-            function() {
+            qtd = 1;
 
+            quantidade.value = 1;
 
-                let qtd =
-                    parseInt(quantidade.value);
+        }
 
 
-                if (
-                    isNaN(qtd) ||
-                    qtd < 1
-                ) {
-
-                    qtd = 1;
-
-                    quantidade.value = 1;
-
-                }
+        const total = precoProduto * qtd;
 
 
-                const total =
-                    precoProduto * qtd;
+        preco.textContent =
+            "R$ " +
+            total.toFixed(2).replace(".", ",") +
+            " à vista";
 
 
-                valorParcial.textContent =
-                    "Valor parcial: R$ " +
-                    total
-                        .toFixed(2)
-                        .replace(".", ",");
+        if (valorParcial) {
 
-            }
-        );
+            valorParcial.textContent =
+                "Valor parcial: R$ " +
+                total.toFixed(2).replace(".", ",");
 
-    }
+        }
+
+    });
 
 }
