@@ -5,103 +5,110 @@
   <meta charset="UTF-8">
   <title>Crown Costumes</title>
   <link href="estilos.css" rel="stylesheet">
+
+  <style>
+    .mensagem-login {
+      color: rgb(250, 215, 112);
+      margin-bottom: 15px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .mensagem-login ul {
+      padding-left: 20px;
+    }
+  </style>
 </head>
 
 <body class="pagina-form">
 
   <div class="login-container">
 
-    <form
-      class="login-box"
-      id="formCadastro"
-    >
+    <form class="login-box" id="formCadastro">
 
       <h2>Cadastro</h2>
 
+      <div id="mensagemCadastro" class="mensagem-login"></div>
 
-      <div
-        id="mensagemCadastro"
-        class="mensagem-login"
-      ></div>
+      <input type="text" id="nome" name="nome" placeholder="Nome">
 
+      <input type="text" id="usuario" name="usuario" placeholder="Usuário">
 
-      <input
-        type="text"
-        id="nome"
-        name="nome"
-        placeholder="Nome"
-        required
-      >
+      <input type="password" id="senha" name="senha" placeholder="Senha">
 
+      <input type="text" id="cpf" name="cpf" placeholder="CPF">
 
-      <input
-        type="text"
-        id="usuario"
-        name="usuario"
-        placeholder="Usuário"
-        required
-      >
+      <input type="date" id="dataNascimento" name="dataNascimento">
 
+      <input type="email" id="email" name="email" placeholder="Email">
 
-      <input
-        type="password"
-        id="senha"
-        name="senha"
-        placeholder="Senha"
-        required
-      >
-
-
-      <input
-        type="text"
-        id="cpf"
-        name="cpf"
-        placeholder="CPF"
-        required
-      >
-
-
-      <input
-        type="date"
-        id="dataNascimento"
-        name="dataNascimento"
-        required
-      >
-
-
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Email"
-        required
-      >
-
-
-      <button
-        class="btn"
-        type="submit"
-      >
-        Cadastrar
-      </button>
-
+      <button class="btn" type="submit">Cadastrar</button>
 
       <p class="link-login">
-
         Já tem conta?
-
-        <a href="login.html">
-          Entrar
-        </a>
-
+        <a href="login.html">Entrar</a>
       </p>
 
     </form>
 
   </div>
 
+  <script>
 
-  <script src="script.js"></script>
+    const form = document.getElementById("formCadastro");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const mensagem = document.getElementById("mensagemCadastro");
+
+      let faltando = [];
+
+      if (document.getElementById("nome").value.trim() === "") {
+        faltando.push("Falta preencher o nome.");
+      }
+
+      if (document.getElementById("usuario").value.trim() === "") {
+        faltando.push("Falta preencher o usuário.");
+      }
+
+      if (document.getElementById("senha").value.trim() === "") {
+        faltando.push("Falta preencher a senha.");
+      }
+
+      if (document.getElementById("cpf").value.trim() === "") {
+        faltando.push("Falta preencher o CPF.");
+      }
+
+      if (document.getElementById("dataNascimento").value === "") {
+        faltando.push("Falta preencher a data de nascimento.");
+      }
+
+      if (document.getElementById("email").value.trim() === "") {
+        faltando.push("Falta preencher o email.");
+      }
+
+      if (faltando.length > 0) {
+
+        mensagem.innerHTML =
+          "<strong>Não foi possível realizar o cadastro!</strong><ul><li>" +
+          faltando.join("</li><li>") +
+          "</li></ul>";
+
+        return;
+
+      }
+
+      mensagem.innerHTML = "";
+
+      alert("Todos os campos foram preenchidos!");
+
+      // Aqui entrará o envio do cadastro para o PHP.
+
+    });
+
+  </script>
 
 </body>
 </html>

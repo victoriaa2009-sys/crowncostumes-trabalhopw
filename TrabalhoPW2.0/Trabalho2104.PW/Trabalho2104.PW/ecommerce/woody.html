@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>Crown Costumes</title>
   <link href="estilos.css" rel="stylesheet">
+
+  <style>
+    .mensagem-carrinho {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      color: #faf06b;
+      background: rgba(240, 247, 203, 0.35);
+      border: 1px solid rgba(100, 92, 3, 0.4);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .valor-parcial {
+      font-size: 20px;
+      font-weight: bold;
+      color: #8b6b20;
+    }
+  </style>
 </head>
 
 <body>
@@ -49,10 +69,10 @@
       <p class="entrega">Entrega em até 5 dias úteis</p>
 
       <label>Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1">
+      <input type="number" id="quantidade" value="1" min="1" step="1">
 
       <p id="valorParcial" class="valor-parcial">
-        Valor parcial: R$ 148,98
+        Valor total: R$ 148,98
       </p>
 
       <h3>Formas de pagamento</h3>
@@ -63,9 +83,11 @@
         <li>Boleto bancário</li>
       </ul>
 
-      <button class="btn" id="adicionarCarrinho">
+      <button class="btn" id="adicionarCarrinho" type="button">
         Adicionar ao Carrinho
       </button>
+
+      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
     </div>
 
   </section>
@@ -132,26 +154,38 @@
     const quantidade = document.getElementById("quantidade");
     const valorParcial = document.getElementById("valorParcial");
     const botaoAdicionar = document.getElementById("adicionarCarrinho");
+    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
 
-    quantidade.addEventListener("input", function () {
+    function formatarPreco(valor) {
+      return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
 
-      let qtd = Number(quantidade.value);
+    function atualizarPreco() {
+      const qtd = Number(quantidade.value);
 
-      if (qtd < 1 || isNaN(qtd)) {
-        qtd = 1;
-        quantidade.value = 1;
+      if (!Number.isInteger(qtd) || qtd < 1) {
+        valorParcial.textContent = "Informe uma quantidade válida.";
+        return;
       }
 
-      const total = precoProduto * qtd;
-
       valorParcial.textContent =
-        "Valor parcial: R$ " +
-        total.toFixed(2).replace(".", ",");
-    });
+        "Valor total: " + formatarPreco(precoProduto * qtd);
+    }
 
-    botaoAdicionar.addEventListener("click", function () {
+    quantidade.addEventListener("input", atualizarPreco);
+    quantidade.addEventListener("change", atualizarPreco);
 
+    botaoAdicionar.addEventListener("click", function() {
       const qtd = Number(quantidade.value);
+
+      if (!Number.isInteger(qtd) || qtd < 1) {
+        mensagemCarrinho.style.display = "block";
+        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
+        return;
+      }
 
       const produto = {
         nome: "Fantasia do Woody",
@@ -160,10 +194,9 @@
         imagem: "fotos/masculinas/woody.jpg"
       };
 
-      let carrinho =
-        JSON.parse(sessionStorage.getItem("carrinho")) || [];
+      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-      const produtoExistente = carrinho.find(function (item) {
+      const produtoExistente = carrinho.find(function(item) {
         return item.nome === produto.nome;
       });
 
@@ -173,13 +206,16 @@
         carrinho.push(produto);
       }
 
-      sessionStorage.setItem(
-        "carrinho",
-        JSON.stringify(carrinho)
-      );
+      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-      alert("Produto adicionado ao carrinho!");
+      mensagemCarrinho.style.display = "block";
+      mensagemCarrinho.innerHTML =
+        "✓ Produto adicionado ao carrinho!<br><br>" +
+        "Quantidade: " + qtd + "<br>" +
+        "Valor: " + formatarPreco(precoProduto * qtd);
     });
+
+    atualizarPreco();
   </script>
 
 </body>
