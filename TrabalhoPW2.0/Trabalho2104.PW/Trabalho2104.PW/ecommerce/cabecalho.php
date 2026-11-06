@@ -1,4 +1,12 @@
 
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$nomeUsuario = $_SESSION["usuario_nome"] ?? "Visitante";
+?>
+
 <div class="topo">
 
     <div class="barra">
@@ -36,7 +44,7 @@
         <div class="acoes">
 
             <span>
-                Olá, <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>!
+                Olá, <?php echo htmlspecialchars($nomeUsuario); ?>!
             </span>
 
             <a href="carrinho.php" class="btn">Carrinho</a>

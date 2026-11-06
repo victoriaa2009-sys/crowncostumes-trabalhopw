@@ -1,33 +1,35 @@
+alert("SCRIPT NOVO CARREGADO!");
+
 /*============================================================
 PESQUISA E AUTOCOMPLETE
 ============================================================*/
 
 const produtos = [
 
-    { nome: "Mickey Mouse", pagina: "mickeykids.html" },
-    { nome: "Harry Potter", pagina: "harrypotter.html" },
-    { nome: "Maskara", pagina: "maskara.html" },
-    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.html" },
-    { nome: "David Bowie", pagina: "davidbowie.html" },
-    { nome: "Chapéu de Bruxa", pagina: "acessorios6.html" },
+    { nome: "Mickey Mouse", pagina: "mickeykids.php" },
+    { nome: "Harry Potter", pagina: "harrypotter.php" },
+    { nome: "Maskara", pagina: "maskara.php" },
+    { nome: "Alice, de Alice no País das Maravilhas", pagina: "alice.php" },
+    { nome: "David Bowie", pagina: "davidbowie.php" },
+    { nome: "Chapéu de Bruxa", pagina: "acessorios6.php" },
 
-    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.html" },
-    { nome: "Mágica", pagina: "magica.html" },
-    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.html" },
-    { nome: "Super Mario FEM", pagina: "mariofem.html" },
+    { nome: "Bela, de Bela e a Fera", pagina: "belaeafera.php" },
+    { nome: "Mágica", pagina: "magica.php" },
+    { nome: "Edward, de Edward Mãos de Tesoura", pagina: "edwardfem.php" },
+    { nome: "Super Mario FEM", pagina: "mariofem.php" },
 
-    { nome: "Pânico", pagina: "panico.html" },
-    { nome: "Pikachu", pagina: "pikachu.html" },
-    { nome: "Luigi", pagina: "luigi.html" },
-    { nome: "Barney", pagina: "barney.html" },
+    { nome: "Pânico", pagina: "panico.php" },
+    { nome: "Pikachu", pagina: "pikachu.php" },
+    { nome: "Luigi", pagina: "luigi.php" },
+    { nome: "Barney", pagina: "barney.php" },
 
-    { nome: "Minions", pagina: "acessorios1.html" },
-    { nome: "Espião", pagina: "acessorios2.html" },
-    { nome: "Mágico", pagina: "acessorios4.html" },
-    { nome: "Peruca verde e amarelo", pagina: "perucaverde.html" },
+    { nome: "Minions", pagina: "acessorios1.php" },
+    { nome: "Espião", pagina: "acessorios2.php" },
+    { nome: "Mágico", pagina: "acessorios4.php" },
+    { nome: "Peruca verde e amarelo", pagina: "perucaverde.php" },
 
-    { nome: "Palhaço", pagina: "palhacokids.html" },
-    { nome: "Branca de Neve", pagina: "brancadenevekids.html" }
+    { nome: "Palhaço", pagina: "palhacokids.php" },
+    { nome: "Branca de Neve", pagina: "brancadenevekids.php" }
 
 ];
 
@@ -48,11 +50,9 @@ if (campoBusca && sugestoes) {
 
         sugestoes.innerHTML = "";
 
-
         if (texto === "") {
             return;
         }
-
 
         const resultados =
             produtos.filter(function(produto) {
@@ -63,27 +63,22 @@ if (campoBusca && sugestoes) {
 
             });
 
-
         resultados.forEach(function(produto) {
 
             const sugestao =
                 document.createElement("div");
 
-
             sugestao.textContent =
                 produto.nome;
 
-
             sugestao.classList.add("sugestao");
-
 
             sugestao.addEventListener("click", function() {
 
                 window.location.href =
-                    produto.pagina;
+                    "/ecommerce/" + produto.pagina;
 
             });
-
 
             sugestoes.appendChild(sugestao);
 
@@ -116,7 +111,6 @@ if (formLogin) {
 
     formLogin.addEventListener("submit", function(event) {
 
-
         if (
             usuario.value.trim() === "" &&
             senha.value.trim() === ""
@@ -129,7 +123,6 @@ if (formLogin) {
 
         }
 
-
         else if (usuario.value.trim() === "") {
 
             event.preventDefault();
@@ -139,7 +132,6 @@ if (formLogin) {
 
         }
 
-
         else if (senha.value.trim() === "") {
 
             event.preventDefault();
@@ -148,7 +140,6 @@ if (formLogin) {
                 "Digite sua senha.";
 
         }
-
 
         else {
 
@@ -179,68 +170,34 @@ if (formCadastro) {
 
         event.preventDefault();
 
-
         let faltando = [];
 
 
         const nome =
-            document.getElementById("nome")
-                .value.trim();
-
+            document.getElementById("nome").value.trim();
 
         const usuario =
-            document.getElementById("usuario")
-                .value.trim();
-
+            document.getElementById("usuario").value.trim();
 
         const senha =
-            document.getElementById("senha")
-                .value.trim();
-
+            document.getElementById("senha").value.trim();
 
         const cpf =
-            document.getElementById("cpf")
-                .value.trim();
-
+            document.getElementById("cpf").value.trim();
 
         const dataNascimento =
-            document.getElementById("dataNascimento")
-                .value;
-
+            document.getElementById("dataNascimento").value;
 
         const email =
-            document.getElementById("email")
-                .value.trim();
+            document.getElementById("email").value.trim();
 
 
-        if (nome === "") {
-            faltando.push("Nome");
-        }
-
-
-        if (usuario === "") {
-            faltando.push("Usuário");
-        }
-
-
-        if (senha === "") {
-            faltando.push("Senha");
-        }
-
-
-        if (cpf === "") {
-            faltando.push("CPF");
-        }
-
-
-        if (dataNascimento === "") {
-            faltando.push("Data de nascimento");
-        }
-
-
-        if (email === "") {
-            faltando.push("Email");
-        }
+        if (nome === "") faltando.push("Nome");
+        if (usuario === "") faltando.push("Usuário");
+        if (senha === "") faltando.push("Senha");
+        if (cpf === "") faltando.push("CPF");
+        if (dataNascimento === "") faltando.push("Data de nascimento");
+        if (email === "") faltando.push("Email");
 
 
         if (faltando.length > 0) {
@@ -252,14 +209,11 @@ if (formCadastro) {
 
         }
 
-
         else {
 
             mensagemCadastro.textContent = "";
 
-            alert(
-                "Cadastro realizado com sucesso!"
-            );
+            alert("Cadastro realizado com sucesso!");
 
         }
 
@@ -271,6 +225,7 @@ if (formCadastro) {
 /*============================================================
 QUANTIDADE E VALOR PARCIAL
 ============================================================*/
+
 const precos = {
 
     acessorios1: 87.90,
@@ -294,7 +249,7 @@ const precos = {
     palhaco: 148.98,
     palhacokids: 148.98,
     panico: 148.98,
-    perucaverdessss: 87.90,
+    perucaverde: 87.90,
     pikachu: 200.00,
     piratakids: 168.78,
     woody: 148.98
@@ -302,13 +257,17 @@ const precos = {
 };
 
 
-const produto = document.querySelector(".produto-container");
+const produto =
+    document.querySelector(".produto-container");
 
-const quantidade = document.getElementById("quantidade");
+const quantidade =
+    document.getElementById("quantidade");
 
-const preco = document.getElementById("preco");
+const preco =
+    document.getElementById("preco");
 
-const valorParcial = document.getElementById("valorParcial");
+const valorParcial =
+    document.getElementById("valorParcial");
 
 
 if (produto && quantidade && preco) {
@@ -322,15 +281,12 @@ if (produto && quantidade && preco) {
 
         let qtd = parseInt(quantidade.value);
 
-
         if (qtd < 1 || isNaN(qtd)) {
 
             qtd = 1;
-
             quantidade.value = 1;
 
         }
-
 
         const total = precoProduto * qtd;
 
