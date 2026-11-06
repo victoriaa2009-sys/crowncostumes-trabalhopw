@@ -42,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_SESSION["usuario_nome"] = $dadosUsuario["nome"];
                     $_SESSION["usuario"] = $dadosUsuario["usuario"];
 
+                    $stmt->close();
+
                     header("Location: paginainicial.php");
                     exit;
 
@@ -75,6 +77,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <title>Crown Costumes</title>
     <link href="estilos.css" rel="stylesheet">
+
+    <style>
+        .mensagem-login {
+            color: rgb(250, 215, 112);
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .mensagem-login ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 <body class="pagina-form">
@@ -90,11 +105,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <h1>Login</h1>
 
-            <?php if ($mensagem !== "") { ?>
-                <div class="mensagem-login">
+            <div id="mensagemLogin" class="mensagem-login">
+                <?php if ($mensagem !== "") { ?>
                     <?php echo htmlspecialchars($mensagem); ?>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
 
             <label for="usuario">
                 Usuário:
@@ -104,7 +119,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 type="text"
                 id="usuario"
                 name="usuario"
-                required
             >
 
             <label for="senha">
@@ -115,7 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 type="password"
                 id="senha"
                 name="senha"
-                required
             >
 
             <button type="submit">
@@ -130,6 +143,48 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
 
     </div>
+
+    <script>
+
+        const formLogin = document.getElementById("formLogin");
+
+        formLogin.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const usuario = document.getElementById("usuario").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+
+            const mensagem = document.getElementById("mensagemLogin");
+
+            let faltando = [];
+
+            if (usuario === "") {
+                faltando.push("Falta preencher o usuário.");
+            }
+
+            if (senha === "") {
+                faltando.push("Falta preencher a senha.");
+            }
+
+            if (faltando.length > 0) {
+
+                mensagem.innerHTML =
+                    "<strong>Não foi possível realizar o login!</strong><ul><li>" +
+                    faltando.join("</li><li>") +
+                    "</li></ul>";
+
+                return;
+
+            }
+
+            mensagem.innerHTML = "";
+
+            formLogin.submit();
+
+        });
+
+    </script>
 
 </body>
 </html>

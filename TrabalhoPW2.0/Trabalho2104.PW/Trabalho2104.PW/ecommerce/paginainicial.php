@@ -9,161 +9,205 @@ if (!isset($_SESSION["usuario_id"])) {
 
 require_once "php/conexao.php";
 
-$sql = "SELECT * FROM produtos";
+$paginasProdutos = [
+    "Minions" => "acessorios1.html",
+    "Espião" => "acessorios2.html",
+    "Mágico" => "acessorios4.html",
+    "Chapéu de Bruxa" => "acessorios6.html",
+    "Fantasia do Máskara" => "maskara.html",
+    "Fantasia de Harry Potter" => "harrypotter.html"
+];
+
+$sql = "SELECT * FROM produtos
+        WHERE nome IN (
+            'Minions',
+            'Espião',
+            'Mágico',
+            'Chapéu de Bruxa',
+            'Fantasia do Máskara',
+            'Fantasia de Harry Potter'
+        )
+        ORDER BY FIELD(
+            nome,
+            'Minions',
+            'Espião',
+            'Mágico',
+            'Chapéu de Bruxa',
+            'Fantasia do Máskara',
+            'Fantasia de Harry Potter'
+        )";
+
 $resultado = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <header>
-    <img src="fotos/logo.png" class="logo" alt="Logo Crown Costumes">
-    <h1>Crown Costumes</h1>
-  </header>
+    <header>
+        <img src="fotos/logo.png" class="logo" alt="Logo Crown Costumes">
+        <h1>Crown Costumes</h1>
+    </header>
 
-  <div class="topo">
+    <div class="topo">
 
-    <form class="barra" action="paginainicial.php" method="get">
+        <div class="barra">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="Logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+            <div class="marca">
+                <img src="fotos/logopreta.png" class="logopreta" alt="Logo preta">
 
-      <span class="busca-container">
+                <a href="paginainicial.php" class="nome-barra">
+                    Crown Costumes
+                </a>
+            </div>
 
-        <input
-          type="text"
-          placeholder="Buscar fantasias..."
-          name="busca"
-          id="campo-busca"
-          autocomplete="off"
-        >
+            <form class="busca-container" action="paginainicial.php" method="get">
 
-        <input
-          type="submit"
-          value="Buscar"
-          class="btn-busca"
-        >
+                <input
+                    type="text"
+                    placeholder="Buscar fantasias..."
+                    name="busca"
+                    id="campo-busca"
+                    autocomplete="off"
+                >
 
-        <div id="sugestoes"></div>
+                <input
+                    type="submit"
+                    value="Buscar"
+                    class="btn-busca"
+                >
 
-      </span>
+                <div id="sugestoes"></div>
 
-      <div class="acoes">
+            </form>
 
-        <span>
-          Olá, <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>!
-        </span>
+            <div class="acoes">
 
-        <button type="submit" formaction="carrinho.html" formmethod="get">
-          Carrinho
-        </button>
+                <span>
+                    Olá, <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>!
+                </span>
 
-        <button type="submit" formaction="sobre.html" formmethod="get">
-          Sobre
-        </button>
+                <a href="carrinho.html" class="btn">
+                    Carrinho
+                </a>
 
-        <a href="logout.php" class="btn">
-          Sair
-        </a>
+                <a href="sobre.html" class="btn">
+                    Sobre
+                </a>
 
-      </div>
+                <a href="logout.php" class="btn">
+                    Sair
+                </a>
 
-    </form>
+            </div>
 
-  </div>
-
-  <section class="colecoes">
-
-    <h2>Descubra Nossas Coleções Exclusivas!</h2>
-
-    <div class="produtos">
-
-      <a href="feminino.html" class="produto">
-        <img src="fotos/femininas/edward.jpeg" alt="Edward">
-        <h3>Feminino</h3>
-      </a>
-
-      <a href="masculino.html" class="produto">
-        <img src="fotos/masculinas/mágico.jpg" alt="Fantasia Mágico">
-        <h3>Masculino</h3>
-      </a>
-
-      <a href="unissex.html" class="produto">
-        <img src="fotos/unissex/uni7.webp" alt="Fantasia Unissex">
-        <h3>Unissex</h3>
-      </a>
+        </div>
 
     </div>
 
-    <div class="produtos">
+    <section class="colecoes">
 
-      <a href="acessorios.html" class="produto">
-        <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
-        <h3>Acessórios</h3>
-      </a>
+        <h2>Descubra Nossas Coleções Exclusivas!</h2>
 
-      <a href="kids.html" class="produto">
-        <img src="fotos/kids/palhacokids.webp" alt="Fantasia de Palhaço infantil">
-        <h3>Kids</h3>
-      </a>
+        <div class="produtos">
 
-    </div>
+            <a href="feminino.html" class="produto">
+                <img src="fotos/femininas/edward.jpeg" alt="Edward">
+                <h3>Feminino</h3>
+            </a>
 
-  </section>
+            <a href="masculino.html" class="produto">
+                <img src="fotos/masculinas/mágico.jpg" alt="Fantasia Mágico">
+                <h3>Masculino</h3>
+            </a>
 
-  <section class="mais-vendidos">
+            <a href="unissex.html" class="produto">
+                <img src="fotos/unissex/uni7.webp" alt="Fantasia Unissex">
+                <h3>Unissex</h3>
+            </a>
 
-    <h2>Mais vendidos</h2>
+        </div>
 
-    <div class="produtos">
+        <div class="produtos">
 
-      <?php if ($resultado && $resultado->num_rows > 0) { ?>
+            <a href="acessorios.html" class="produto">
+                <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
+                <h3>Acessórios</h3>
+            </a>
 
-        <?php while ($produto = $resultado->fetch_assoc()) { ?>
+            <a href="kids.html" class="produto">
+                <img src="fotos/kids/palhacokids.webp" alt="Fantasia de Palhaço infantil">
+                <h3>Kids</h3>
+            </a>
 
-          <div class="produto destaque">
+        </div>
 
-            <img
-              src="<?php echo htmlspecialchars($produto['foto']); ?>"
-              alt="<?php echo htmlspecialchars($produto['nome']); ?>"
-            >
+    </section>
 
-            <h3>
-              <?php echo htmlspecialchars($produto['nome']); ?>
-            </h3>
+    <section class="mais-vendidos">
 
-            <p class="preco">
-              R$ <?php echo number_format((float) $produto['preco'], 2, ',', '.'); ?> à vista
-            </p>
+        <h2>Mais vendidos</h2>
 
-          </div>
+        <div class="produtos">
 
-        <?php } ?>
+            <?php if ($resultado && $resultado->num_rows > 0) { ?>
 
-      <?php } else { ?>
+                <?php while ($produto = $resultado->fetch_assoc()) { ?>
 
-        <p>Nenhum produto cadastrado no momento.</p>
+                    <?php
+                    $nomeProduto = $produto["nome"];
+                    $pagina = $paginasProdutos[$nomeProduto];
+                    ?>
 
-      <?php } ?>
+                    <a
+                        href="<?php echo htmlspecialchars($pagina); ?>"
+                        class="produto destaque"
+                    >
 
-    </div>
+                        <img
+                            src="<?php echo htmlspecialchars($produto['foto']); ?>"
+                            alt="<?php echo htmlspecialchars($produto['nome']); ?>"
+                        >
 
-  </section>
+                        <h3>
+                            <?php echo htmlspecialchars($produto['nome']); ?>
+                        </h3>
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+                        <p class="preco">
+                            R$ <?php echo number_format(
+                                (float) $produto['preco'],
+                                2,
+                                ',',
+                                '.'
+                            ); ?> à vista
+                        </p>
 
-  <script src="script.js"></script>
+                    </a>
+
+                <?php } ?>
+
+            <?php } else { ?>
+
+                <p>Nenhum produto cadastrado no momento.</p>
+
+            <?php } ?>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

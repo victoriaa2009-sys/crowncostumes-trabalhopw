@@ -57,8 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($stmt->execute()) {
 
                 $mensagem = "Cadastro realizado com sucesso!";
-                $tipoMensagem = "sucesso";
-
+                
                 $nome = "";
                 $usuario = "";
                 $cpf = "";
@@ -86,28 +85,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <title>Crown Costumes - Cadastro</title>
+    <title>Crown Costumes</title>
     <link href="estilos.css" rel="stylesheet">
+
+    <style>
+        .mensagem-login {
+            color: rgb(250, 215, 112);
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .mensagem-login ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 
 <body class="pagina-form">
 
     <div class="login-container">
 
-        <form class="login-box" id="formCadastro" method="post" action="cadastro.php">
+        <form class="login-box" id="formCadastro"
+              method="POST" action="cadastro.php">
 
             <h2>Cadastro</h2>
 
-            <?php if ($mensagem !== "") { ?>
-                <div class="mensagem-login">
+            <div id="mensagemCadastro" class="mensagem-login">
+                <?php if ($mensagem !== "") { ?>
                     <?php echo htmlspecialchars($mensagem); ?>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
 
             <input
                 type="text"
@@ -115,7 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 name="nome"
                 placeholder="Nome"
                 value="<?php echo htmlspecialchars($nome); ?>"
-                required
             >
 
             <input
@@ -124,7 +137,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 name="usuario"
                 placeholder="Usuário"
                 value="<?php echo htmlspecialchars($usuario); ?>"
-                required
             >
 
             <input
@@ -132,7 +144,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 id="senha"
                 name="senha"
                 placeholder="Senha"
-                required
             >
 
             <input
@@ -141,7 +152,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 name="cpf"
                 placeholder="CPF"
                 value="<?php echo htmlspecialchars($cpf); ?>"
-                required
             >
 
             <input
@@ -149,7 +159,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 id="dataNascimento"
                 name="dataNascimento"
                 value="<?php echo htmlspecialchars($dataNascimento); ?>"
-                required
             >
 
             <input
@@ -158,7 +167,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 name="email"
                 placeholder="Email"
                 value="<?php echo htmlspecialchars($email); ?>"
-                required
             >
 
             <button class="btn" type="submit">
@@ -173,6 +181,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
 
     </div>
+
+    <script>
+        const form = document.getElementById("formCadastro");
+
+        form.addEventListener("submit", function(event) {
+
+            const mensagem = document.getElementById("mensagemCadastro");
+
+            let faltando = [];
+
+            if (document.getElementById("nome").value.trim() === "") {
+                faltando.push("Falta preencher o nome.");
+            }
+
+            if (document.getElementById("usuario").value.trim() === "") {
+                faltando.push("Falta preencher o usuário.");
+            }
+
+            if (document.getElementById("senha").value.trim() === "") {
+                faltando.push("Falta preencher a senha.");
+            }
+
+            if (document.getElementById("cpf").value.trim() === "") {
+                faltando.push("Falta preencher o CPF.");
+            }
+
+            if (document.getElementById("dataNascimento").value === "") {
+                faltando.push("Falta preencher a data de nascimento.");
+            }
+
+            if (document.getElementById("email").value.trim() === "") {
+                faltando.push("Falta preencher o email.");
+            }
+
+            if (faltando.length > 0) {
+
+                event.preventDefault();
+
+                mensagem.innerHTML =
+                    "<strong>Não foi possível realizar o cadastro!</strong><ul><li>" +
+                    faltando.join("</li><li>") +
+                    "</li></ul>";
+
+            }
+
+        });
+    </script>
 
 </body>
 </html>
