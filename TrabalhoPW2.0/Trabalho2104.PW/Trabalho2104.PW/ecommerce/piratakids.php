@@ -1,223 +1,216 @@
 
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="piratakids.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="piratakids">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de pirata infantil">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
+            <h2>Fantasia de Pirata Infantil</h2>
 
-    </form>
-  </div>
+            <p class="preco">R$ 168,78 à vista</p>
+            <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
 
-  <section class="produto-container" id="piratakids">
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-img">
-      <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de pirata infantil">
-    </div>
+            <label>Quantidade:</label>
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-    <div class="produto-info">
-      <h2>Fantasia de Pirata Infantil</h2>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 168,78
+            </p>
 
-      <p class="preco">R$ 168,78 à vista</p>
-      <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
+            <h3>Formas de pagamento</h3>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <label>Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+        </div>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 168,78
-      </p>
+    </section>
 
-      <h3>Formas de pagamento</h3>
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+    <section class="produto-descricao">
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+        <div>
+            <h2>Descrição do Produto</h2>
+            <p>
+                Fantasia completa de Pirata infantil, perfeita para festas, aniversários
+                e eventos temáticos. Confortável, leve e divertida, garante que a criança
+                entre no mundo mágico dos personagens clássicos.
+            </p>
+        </div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
-    </div>
+        <div>
+            <h2>Características</h2>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 1 a 10 anos</li>
+                <li>Inclui: calça + blusa + tapa olho</li>
+                <li>Cor: vermelho, preto e amarelo</li>
+            </ul>
+        </div>
 
-  </section>
+    </section>
 
-  <section class="produto-descricao">
+    <section>
+        <h2>Avaliações</h2>
 
-    <div>
-      <h2>Descrição do Produto</h2>
-      <p>
-        Fantasia completa de Pirata infantil, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida, garante que a criança
-        entre no mundo mágico dos personagens clássicos.
-      </p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Perfeita! Muito bonita e confortável."</p>
+            <p>12/03/2026</p>
+        </div>
 
-    <div>
-      <h2>Características</h2>
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 1 a 10 anos</li>
-        <li>Inclui: calça + blusa + tapa olho</li>
-        <li>Cor: vermelho, preto e amarelo</li>
-      </ul>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐</p>
+            <p>"Ótima qualidade, só demorou um pouco pra chegar."</p>
+            <p>05/03/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  <section>
-    <h2>Avaliações</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas poderia vir melhor embalada."</p>
+            <p>20/02/2026</p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Perfeita! Muito bonita e confortável."</p>
-      <p>12/03/2026</p>
-    </div>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐</p>
-      <p>"Ótima qualidade, só demorou um pouco pra chegar."</p>
-      <p>05/03/2026</p>
-    </div>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas poderia vir melhor embalada."</p>
-      <p>20/02/2026</p>
-    </div>
+    <script>
+    (function() {
 
-  </section>
+        const precoProdutoPirataKids = 168.78;
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+        const quantidadePirataKids = document.getElementById("quantidade");
+        const valorParcialPirataKids = document.getElementById("valorParcial");
+        const botaoAdicionarPirataKids = document.getElementById("adicionarCarrinho");
+        const mensagemCarrinhoPirataKids = document.getElementById("mensagemCarrinho");
 
-  <script>
-    const precoProduto = 168.78;
+        function formatarPrecoPirataKids(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+        function atualizarPrecoPirataKids() {
+            const qtd = Number(quantidadePirataKids.value);
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                valorParcialPirataKids.textContent = "Informe uma quantidade válida.";
+                return;
+            }
 
-    function atualizarPreco() {
-      const qtd = Number(quantidade.value);
+            valorParcialPirataKids.textContent =
+                "Valor total: " + formatarPrecoPirataKids(precoProdutoPirataKids * qtd);
+        }
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+        quantidadePirataKids.addEventListener("input", atualizarPrecoPirataKids);
+        quantidadePirataKids.addEventListener("change", atualizarPrecoPirataKids);
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
-    }
+        botaoAdicionarPirataKids.addEventListener("click", function() {
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            const qtd = Number(quantidadePirataKids.value);
 
-    botaoAdicionar.addEventListener("click", function() {
-      const qtd = Number(quantidade.value);
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                mensagemCarrinhoPirataKids.style.display = "block";
+                mensagemCarrinhoPirataKids.textContent = "Escolha uma quantidade válida!";
+                return;
+            }
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+            const produto = {
+                nome: "Fantasia de Pirata Infantil",
+                preco: precoProdutoPirataKids,
+                quantidade: qtd,
+                imagem: "fotos/kids/Pirataskids.webp"
+            };
 
-      const produto = {
-        nome: "Fantasia de Pirata Infantil",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/kids/Pirataskids.webp"
-      };
+            let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+            const produtoExistente = carrinho.find(function(item) {
+                return item.nome === produto.nome;
+            });
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+            if (produtoExistente) {
+                produtoExistente.quantidade += qtd;
+            } else {
+                carrinho.push(produto);
+            }
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+            sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+            mensagemCarrinhoPirataKids.style.display = "block";
+            mensagemCarrinhoPirataKids.innerHTML =
+                "✓ Produto adicionado ao carrinho!<br><br>" +
+                "Quantidade: " + qtd + "<br>" +
+                "Valor: " + formatarPrecoPirataKids(precoProdutoPirataKids * qtd);
+        });
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-    });
+        atualizarPrecoPirataKids();
 
-    atualizarPreco();
-  </script>
+    })();
+    </script>
 
 </body>
 </html>

@@ -1,269 +1,238 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="davidbowie.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="davidbowie">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/masculinas/anos80.jpg" alt="Fantasia do David Bowie">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
 
-    </form>
-  </div>
+            <h2>Fantasia do David Bowie</h2>
 
-  <section class="produto-container" id="davidbowie">
+            <p class="preco">R$ 148,98 à vista</p>
+            <p class="parcelado">ou 2x de R$ 74,49 sem juros</p>
 
-    <div class="produto-img">
-      <img src="fotos/masculinas/anos80.jpg" alt="Fantasia do David Bowie">
-    </div>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-info">
+            <label for="quantidade">Quantidade:</label>
 
-      <h2>Fantasia do David Bowie</h2>
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-      <p class="preco">R$ 148,98 à vista</p>
-      <p class="parcelado">ou 2x de R$ 74,49 sem juros</p>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 148,98
+            </p>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <h3>Formas de pagamento</h3>
 
-      <label for="quantidade">Quantidade:</label>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 148,98
-      </p>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-      <h3>Formas de pagamento</h3>
+        </div>
 
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+    </section>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+    <section class="produto-descricao">
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+        <div>
+            <h2>Descrição do Produto</h2>
 
-    </div>
+            <p>
+                Fantasia completa inspirada no David Bowie, perfeita para festas, aniversários
+                e eventos temáticos. Confortável, leve e divertida.
+            </p>
+        </div>
 
-  </section>
+        <div>
+            <h2>Características</h2>
 
-  <section class="produto-descricao">
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: vestido + colar</li>
+                <li>Cor: branco, vermelho, amarelo e azul</li>
+            </ul>
+        </div>
 
-    <div>
-      <h2>Descrição do Produto</h2>
+    </section>
 
-      <p>
-        Fantasia completa inspirada no David Bowie, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida.
-      </p>
-    </div>
+    <section>
 
-    <div>
-      <h2>Características</h2>
+        <h2>Avaliações</h2>
 
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: vestido + colar</li>
-        <li>Cor: branco, vermelho, amarelo e azul</li>
-      </ul>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-  <section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-    <h2>Avaliações</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+    <script>
+        (function() {
 
-  </section>
+            const precoProdutoBowie = 148.98;
 
-  <script>
+            const quantidadeBowie = document.getElementById("quantidade");
+            const valorParcialBowie = document.getElementById("valorParcial");
+            const botaoAdicionarBowie = document.getElementById("adicionarCarrinho");
+            const mensagemCarrinhoBowie = document.getElementById("mensagemCarrinho");
 
-    // Preço unitário do produto
-    const precoProduto = 148.98;
+            function formatarPrecoBowie(valor) {
+                return valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+            }
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+            function atualizarPrecoBowie() {
 
+                const qtd = Number(quantidadeBowie.value);
 
-    // Formata o preço em reais
-    function formatarPreco(valor) {
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    valorParcialBowie.textContent = "Informe uma quantidade válida.";
+                    return;
+                }
 
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+                const total = precoProdutoBowie * qtd;
 
-    }
+                valorParcialBowie.textContent =
+                    "Valor total: " + formatarPrecoBowie(total);
 
+            }
 
-    // Atualiza o preço conforme a quantidade
-    function atualizarPreco() {
+            quantidadeBowie.addEventListener("input", atualizarPrecoBowie);
+            quantidadeBowie.addEventListener("change", atualizarPrecoBowie);
 
-      let qtd = Number(quantidade.value);
+            botaoAdicionarBowie.addEventListener("click", function() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+                const qtd = Number(quantidadeBowie.value);
 
-      const total = precoProduto * qtd;
+                if (!Number.isInteger(qtd) || qtd < 1) {
 
-      valorParcial.textContent = "Valor total: " + formatarPreco(total);
+                    mensagemCarrinhoBowie.style.display = "block";
+                    mensagemCarrinhoBowie.style.color = "red";
+                    mensagemCarrinhoBowie.textContent =
+                        "Escolha uma quantidade válida!";
 
-    }
+                    return;
+                }
 
+                const produto = {
+                    nome: "Fantasia do David Bowie",
+                    preco: precoProdutoBowie,
+                    quantidade: qtd,
+                    imagem: "fotos/masculinas/anos80.jpg"
+                };
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+                let carrinho = JSON.parse(
+                    sessionStorage.getItem("carrinho")
+                ) || [];
 
+                const produtoExistente = carrinho.find(function(item) {
+                    return item.nome === produto.nome;
+                });
 
-    // Adiciona o produto ao carrinho
-    botaoAdicionar.addEventListener("click", function() {
+                if (produtoExistente) {
+                    produtoExistente.quantidade += qtd;
+                } else {
+                    carrinho.push(produto);
+                }
 
-      const qtd = Number(quantidade.value);
+                sessionStorage.setItem(
+                    "carrinho",
+                    JSON.stringify(carrinho)
+                );
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
+                mensagemCarrinhoBowie.style.display = "block";
+                mensagemCarrinhoBowie.style.color = "#faf06b";
 
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
+                mensagemCarrinhoBowie.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " + formatarPrecoBowie(precoProdutoBowie * qtd);
 
-        return;
+            });
 
-      }
+            atualizarPrecoBowie();
 
-      const produto = {
-
-        nome: "Fantasia do David Bowie",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/masculinas/anos80.jpg"
-
-      };
-
-
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
-
-
-      const produtoExistente = carrinho.find(function(item) {
-
-        return item.nome === produto.nome;
-
-      });
-
-
-      if (produtoExistente) {
-
-        produtoExistente.quantidade += qtd;
-
-      } else {
-
-        carrinho.push(produto);
-
-      }
-
-
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-
-
-      // Mostra a mensagem de confirmação
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
-
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-
-    });
-
-
-    // Mostra o preço inicial
-    atualizarPreco();
-
-  </script>
-
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+        })();
+    </script>
 
 </body>
 </html>

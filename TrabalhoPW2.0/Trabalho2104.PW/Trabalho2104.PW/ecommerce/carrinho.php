@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -11,797 +12,497 @@ if (!isset($_SESSION["usuario_id"])) {
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="topo">
+    <?php include "cabecalho.php"; ?>
 
-    <form class="barra" action="carrinho.php">
+    <!-- CARRINHO -->
 
-      <div class="marca">
+    <section>
 
-        <img
-          src="fotos/logopreta.png"
-          class="logopreta"
-          alt="logo preta"
-        >
+        <h2 class="carrinho-titulo">
+            Seu Carrinho
+        </h2>
 
-        <a href="paginainicial.php" class="nome-barra">
-          Crown Costumes
-        </a>
+        <table class="carrinho">
 
-      </div>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Nome</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Total</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
 
-      <div>
+            <tbody id="listaCarrinho">
+            </tbody>
 
-        <span class="busca-container">
+        </table>
 
-          <input
-            type="text"
-            placeholder="Buscar fantasias..."
-            name="busca"
-            id="campo-busca"
-            autocomplete="off"
-          >
+        <!-- RESUMO DO PEDIDO -->
 
-          <input
-            type="submit"
-            value="Buscar"
-            class="btn-busca"
-          >
+        <div class="resumo">
 
-          <div id="sugestoes"></div>
+            <h3>Resumo do pedido</h3>
 
-        </span>
+            <!-- CUPOM -->
 
-      </div>
+            <div class="cupom-container">
 
-      <div class="acoes">
+                <h3>Cupom de desconto</h3>
 
-        <button type="submit" formaction="login.php">
-          Login
-        </button>
+                <label for="cupom">Código do cupom:</label>
 
-        <button type="submit" formaction="cadastro.php">
-          Cadastro
-        </button>
+                <input
+                    type="text"
+                    id="cupom"
+                    placeholder="Digite seu cupom"
+                    autocomplete="off"
+                >
 
-        <button type="submit" formaction="carrinho.php">
-          Carrinho
-        </button>
+                <button class="btn" id="aplicarCupom" type="button">
+                    Aplicar Cupom
+                </button>
 
-        <button type="submit" formaction="sobre.html">
-          Sobre
-        </button>
+                <p id="mensagemCupom"></p>
 
-      </div>
+            </div>
 
-    </form>
+            <p>
+                Desconto:
+                <span id="desconto">R$ 0,00</span>
+            </p>
 
-  </div>
+            <!-- CEP -->
 
+            <label for="cep">CEP:</label>
 
-  <!-- CARRINHO -->
-
-  <section>
-
-    <h2 class="carrinho-titulo">
-      Seu Carrinho
-    </h2>
-
-    <table class="carrinho">
-
-      <thead>
-
-        <tr>
-          <th>Produto</th>
-          <th>Nome</th>
-          <th>Quantidade</th>
-          <th>Preço</th>
-          <th>Total</th>
-          <th>Ação</th>
-        </tr>
-
-      </thead>
-
-      <tbody id="listaCarrinho">
-
-      </tbody>
-
-    </table>
-
-
-    <!-- RESUMO DO PEDIDO -->
-
-    <div class="resumo">
-
-      <h3>
-        Resumo do pedido
-      </h3>
-
-
-      <!-- CUPOM -->
-
-      <div class="cupom-container">
-
-        <h3>Cupom de desconto</h3>
-
-        <label for="cupom">
-          Código do cupom:
-        </label>
-
-        <input
-          type="text"
-          id="cupom"
-          placeholder="Digite seu cupom"
-          autocomplete="off"
-        >
-
-        <button
-          class="btn"
-          id="aplicarCupom"
-          type="button"
-        >
-          Aplicar Cupom
-        </button>
-
-        <p id="mensagemCupom"></p>
-
-      </div>
-
-
-      <p>
-        Desconto:
-        <span id="desconto">R$ 0,00</span>
-      </p>
-
-
-      <!-- CEP -->
-
-      <label for="cep">
-        CEP:
-      </label>
-
-      <input
-        type="text"
-        id="cep"
-        placeholder="Digite seu CEP"
-        maxlength="9"
-      >
-
-      <p
-        id="mensagemFrete"
-        class="mensagem-login"
-      ></p>
-
-
-      <!-- FRETE -->
-
-      <p>
-        Frete:
-        <span id="frete">R$ 0,00</span>
-      </p>
-
-
-      <!-- TOTAL -->
-
-      <h2>
-        Total:
-        <span id="totalCarrinho">R$ 0,00</span>
-      </h2>
-
-
-      <button
-        class="btn"
-        id="calcularFrete"
-        type="button"
-      >
-        Calcular Frete
-      </button>
-
-
-      <button
-        class="btn"
-        id="finalizarCompra"
-        type="button"
-      >
-        Finalizar Compra
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- RODAPÉ -->
-
-  <footer>
-
-    <p>
-      © 2026 Crown Costumes
-    </p>
-
-  </footer>
-
-
-  <!-- JAVASCRIPT -->
-
-  <script>
-
-    /*============================================================
-    ELEMENTOS DA PÁGINA
-    ============================================================*/
-
-    const listaCarrinho =
-      document.getElementById("listaCarrinho");
-
-    const totalCarrinho =
-      document.getElementById("totalCarrinho");
-
-    const frete =
-      document.getElementById("frete");
-
-    const cep =
-      document.getElementById("cep");
-
-    const mensagemFrete =
-      document.getElementById("mensagemFrete");
-
-    const calcularFrete =
-      document.getElementById("calcularFrete");
-
-    const botaoFinalizar =
-      document.getElementById("finalizarCompra");
-
-
-    /* ELEMENTOS DO CUPOM */
-
-    const cupom =
-      document.getElementById("cupom");
-
-    const aplicarCupom =
-      document.getElementById("aplicarCupom");
-
-    const mensagemCupom =
-      document.getElementById("mensagemCupom");
-
-    const desconto =
-      document.getElementById("desconto");
-
-
-    /*============================================================
-    PEGANDO O CARRINHO
-    ============================================================*/
-
-    let carrinho = JSON.parse(
-      sessionStorage.getItem("carrinho")
-    ) || [];
-
-
-    /*============================================================
-    VALORES DO FRETE E DESCONTO
-    ============================================================*/
-
-    let valorFrete = 0;
-
-    let valorDesconto = 0;
-
-    let cupomAplicado = false;
-
-
-    /* CUPOM DISPONÍVEL */
-
-    const codigoCupom = "DESCONTO2026";
-
-    const porcentagemDesconto = 0.10;
-
-
-    /*============================================================
-    FORMATAR PREÇO
-    ============================================================*/
-
-    function formatarPreco(valor) {
-
-      return "R$ " +
-        valor.toFixed(2).replace(".", ",");
-
-    }
-
-
-    /*============================================================
-    MOSTRAR OS PRODUTOS
-    ============================================================*/
-
-    function mostrarCarrinho() {
-
-      listaCarrinho.innerHTML = "";
-
-
-      if (carrinho.length === 0) {
-
-        listaCarrinho.innerHTML = `
-          <tr>
-            <td colspan="6">
-              Seu carrinho está vazio.
-            </td>
-          </tr>
-        `;
-
-        valorFrete = 0;
-
-        valorDesconto = 0;
-
-        cupomAplicado = false;
-
-        atualizarTotal();
-
-        return;
-
-      }
-
-
-      carrinho.forEach(function(produto, indice) {
-
-        const totalProduto =
-          produto.preco * produto.quantidade;
-
-
-        const linha =
-          document.createElement("tr");
-
-
-        linha.innerHTML = `
-
-          <td>
-            <img
-              src="${produto.imagem}"
-              width="60"
-              alt="${produto.nome}"
+            <input
+                type="text"
+                id="cep"
+                placeholder="Digite seu CEP"
+                maxlength="9"
             >
-          </td>
 
-          <td>
-            ${produto.nome}
-          </td>
+            <p id="mensagemFrete" class="mensagem-login"></p>
 
-          <td>
+            <!-- FRETE -->
 
-            <button
-              class="btn"
-              type="button"
-              onclick="diminuirQuantidade(${indice})"
-            >
-              -
+            <p>
+                Frete:
+                <span id="frete">R$ 0,00</span>
+            </p>
+
+            <!-- TOTAL -->
+
+            <h2>
+                Total:
+                <span id="totalCarrinho">R$ 0,00</span>
+            </h2>
+
+            <button class="btn" id="calcularFrete" type="button">
+                Calcular Frete
             </button>
 
-            <span style="margin: 0 10px;">
-              ${produto.quantidade}
-            </span>
-
-            <button
-              class="btn"
-              type="button"
-              onclick="aumentarQuantidade(${indice})"
-            >
-              +
+            <button class="btn" id="finalizarCompra" type="button">
+                Finalizar Compra
             </button>
 
-          </td>
+        </div>
 
-          <td>
-            ${formatarPreco(produto.preco)}
-          </td>
+    </section>
 
-          <td>
-            ${formatarPreco(totalProduto)}
-          </td>
+    <!-- RODAPÉ -->
 
-          <td>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-            <button
-              class="btn"
-              type="button"
-              onclick="removerProduto(${indice})"
-            >
-              Remover
-            </button>
+    <script src="script.js"></script>
 
-          </td>
+    <script>
+        (function() {
 
-        `;
+            /* ELEMENTOS DA PÁGINA */
 
+            const listaCarrinho = document.getElementById("listaCarrinho");
+            const totalCarrinho = document.getElementById("totalCarrinho");
+            const frete = document.getElementById("frete");
+            const cep = document.getElementById("cep");
+            const mensagemFrete = document.getElementById("mensagemFrete");
+            const botaoCalcularFrete = document.getElementById("calcularFrete");
+            const botaoFinalizar = document.getElementById("finalizarCompra");
 
-        listaCarrinho.appendChild(linha);
+            /* ELEMENTOS DO CUPOM */
 
-      });
+            const campoCupom = document.getElementById("cupom");
+            const botaoAplicarCupom = document.getElementById("aplicarCupom");
+            const mensagemCupom = document.getElementById("mensagemCupom");
+            const desconto = document.getElementById("desconto");
 
+            /* PEGAR O CARRINHO */
 
-      atualizarTotal();
+            let produtosCarrinho = JSON.parse(
+                sessionStorage.getItem("carrinho")
+            ) || [];
 
-    }
+            /* VALORES DO FRETE E DESCONTO */
 
+            let valorFrete = 0;
+            let valorDesconto = 0;
+            let cupomAplicado = false;
 
-    /*============================================================
-    AUMENTAR QUANTIDADE
-    ============================================================*/
+            const codigoCupom = "DESCONTO2026";
+            const porcentagemDesconto = 0.10;
 
-    function aumentarQuantidade(indice) {
+            /* FORMATAR PREÇO */
 
-      carrinho[indice].quantidade++;
+            function formatarPrecoCarrinho(valor) {
+                return "R$ " + valor.toFixed(2).replace(".", ",");
+            }
 
-      salvarCarrinho();
+            /* SALVAR CARRINHO */
 
-      mostrarCarrinho();
+            function salvarCarrinho() {
+                sessionStorage.setItem(
+                    "carrinho",
+                    JSON.stringify(produtosCarrinho)
+                );
+            }
 
-    }
+            /* MOSTRAR OS PRODUTOS */
 
+            function mostrarCarrinho() {
 
-    /*============================================================
-    DIMINUIR QUANTIDADE
-    ============================================================*/
+                listaCarrinho.innerHTML = "";
 
-    function diminuirQuantidade(indice) {
+                if (produtosCarrinho.length === 0) {
 
-      if (carrinho[indice].quantidade > 1) {
+                    listaCarrinho.innerHTML = `
+                        <tr>
+                            <td colspan="6">
+                                Seu carrinho está vazio.
+                            </td>
+                        </tr>
+                    `;
 
-        carrinho[indice].quantidade--;
+                    valorFrete = 0;
+                    valorDesconto = 0;
+                    cupomAplicado = false;
 
-      }
+                    atualizarTotal();
+                    return;
+                }
 
-      else {
+                produtosCarrinho.forEach(function(produto, indice) {
 
-        carrinho.splice(indice, 1);
+                    const totalProduto =
+                        produto.preco * produto.quantidade;
 
-      }
+                    const linha = document.createElement("tr");
 
+                    linha.innerHTML = `
 
-      salvarCarrinho();
+                        <td>
+                            <img
+                                src="${produto.imagem}"
+                                width="60"
+                                alt="${produto.nome}"
+                            >
+                        </td>
 
-      mostrarCarrinho();
+                        <td>${produto.nome}</td>
 
-    }
+                        <td>
+                            <button
+                                class="btn"
+                                type="button"
+                                data-acao="diminuir"
+                                data-indice="${indice}"
+                            >
+                                -
+                            </button>
 
+                            <span style="margin: 0 10px;">
+                                ${produto.quantidade}
+                            </span>
 
-    /*============================================================
-    REMOVER PRODUTO
-    ============================================================*/
+                            <button
+                                class="btn"
+                                type="button"
+                                data-acao="aumentar"
+                                data-indice="${indice}"
+                            >
+                                +
+                            </button>
+                        </td>
 
-    function removerProduto(indice) {
+                        <td>${formatarPrecoCarrinho(produto.preco)}</td>
 
-      carrinho.splice(indice, 1);
+                        <td>${formatarPrecoCarrinho(totalProduto)}</td>
 
-      salvarCarrinho();
+                        <td>
+                            <button
+                                class="btn"
+                                type="button"
+                                data-acao="remover"
+                                data-indice="${indice}"
+                            >
+                                Remover
+                            </button>
+                        </td>
+                    `;
 
-      mostrarCarrinho();
+                    listaCarrinho.appendChild(linha);
 
-    }
+                });
 
+                atualizarTotal();
+            }
 
-    /*============================================================
-    SALVAR CARRINHO
-    ============================================================*/
+            /* BOTÕES DE QUANTIDADE E REMOÇÃO */
 
-    function salvarCarrinho() {
+            listaCarrinho.addEventListener("click", function(evento) {
 
-      sessionStorage.setItem(
-        "carrinho",
-        JSON.stringify(carrinho)
-      );
+                const botao = evento.target.closest("button[data-acao]");
 
-    }
+                if (!botao) {
+                    return;
+                }
 
+                const indice = Number(botao.dataset.indice);
+                const acao = botao.dataset.acao;
 
-    /*============================================================
-    ATUALIZAR TOTAL
-    ============================================================*/
+                if (acao === "aumentar") {
+                    produtosCarrinho[indice].quantidade++;
+                }
 
-    function atualizarTotal() {
+                else if (acao === "diminuir") {
 
-      let subtotal = 0;
+                    if (produtosCarrinho[indice].quantidade > 1) {
+                        produtosCarrinho[indice].quantidade--;
+                    } else {
+                        produtosCarrinho.splice(indice, 1);
+                    }
 
+                }
 
-      carrinho.forEach(function(produto) {
+                else if (acao === "remover") {
+                    produtosCarrinho.splice(indice, 1);
+                }
 
-        subtotal +=
-          produto.preco * produto.quantidade;
+                salvarCarrinho();
+                mostrarCarrinho();
 
-      });
+            });
 
+            /* ATUALIZAR TOTAL */
 
-      // CALCULAR DESCONTO
+            function atualizarTotal() {
 
-      if (cupomAplicado) {
+                let subtotal = 0;
 
-        valorDesconto =
-          subtotal * porcentagemDesconto;
+                produtosCarrinho.forEach(function(produto) {
+                    subtotal += produto.preco * produto.quantidade;
+                });
 
-      }
+                if (cupomAplicado) {
+                    valorDesconto = subtotal * porcentagemDesconto;
+                } else {
+                    valorDesconto = 0;
+                }
 
-      else {
+                const total =
+                    subtotal - valorDesconto + valorFrete;
 
-        valorDesconto = 0;
+                desconto.textContent =
+                    formatarPrecoCarrinho(valorDesconto);
 
-      }
+                frete.textContent =
+                    formatarPrecoCarrinho(valorFrete);
 
+                totalCarrinho.textContent =
+                    formatarPrecoCarrinho(total);
 
-      // TOTAL COM DESCONTO E FRETE
+            }
 
-      const total =
-        subtotal - valorDesconto + valorFrete;
+            /* APLICAR CUPOM */
 
+            botaoAplicarCupom.addEventListener("click", function() {
 
-      // MOSTRAR VALORES
+                const codigoDigitado =
+                    campoCupom.value.trim().toUpperCase();
 
-      desconto.textContent =
-        formatarPreco(valorDesconto);
+                if (produtosCarrinho.length === 0) {
+                    mensagemCupom.textContent =
+                        "Adicione produtos ao carrinho primeiro.";
+                    return;
+                }
 
-      frete.textContent =
-        formatarPreco(valorFrete);
+                if (codigoDigitado === codigoCupom) {
 
-      totalCarrinho.textContent =
-        formatarPreco(total);
+                    if (cupomAplicado) {
+                        mensagemCupom.textContent =
+                            "O cupom já foi aplicado!";
+                        return;
+                    }
 
-    }
+                    cupomAplicado = true;
 
+                    mensagemCupom.textContent =
+                        "Cupom aplicado com sucesso! Você ganhou 10% de desconto.";
 
-    /*============================================================
-    APLICAR CUPOM DE DESCONTO
-    ============================================================*/
+                    campoCupom.disabled = true;
+                    botaoAplicarCupom.disabled = true;
 
-    aplicarCupom.addEventListener("click", function() {
+                    atualizarTotal();
 
-      const codigoDigitado =
-        cupom.value.trim().toUpperCase();
+                } else {
 
+                    mensagemCupom.textContent =
+                        "Cupom inválido. Tente novamente.";
 
-      // VERIFICAR CARRINHO VAZIO
+                }
 
-      if (carrinho.length === 0) {
+            });
 
-        mensagemCupom.textContent =
-          "Adicione produtos ao carrinho primeiro.";
+            /* CALCULAR FRETE PELO CEP */
 
-        return;
+            botaoCalcularFrete.addEventListener("click", function() {
 
-      }
+                if (produtosCarrinho.length === 0) {
+                    mensagemFrete.textContent =
+                        "Adicione um produto ao carrinho primeiro.";
 
+                    valorFrete = 0;
+                    atualizarTotal();
+                    return;
+                }
 
-      // VERIFICAR SE O CUPOM ESTÁ CORRETO
+                const numeroCEP = cep.value.replace(/\D/g, "");
 
-      if (codigoDigitado === codigoCupom) {
+                if (numeroCEP.length !== 8) {
+                    mensagemFrete.textContent =
+                        "Digite um CEP válido com 8 números.";
 
-        if (cupomAplicado) {
+                    valorFrete = 0;
+                    atualizarTotal();
+                    return;
+                }
 
-          mensagemCupom.textContent =
-            "O cupom já foi aplicado!";
+                /*
+                FAIXAS DE FRETE SIMULADAS
+                PARA O PROJETO ESCOLAR.
+                */
 
-          return;
+                const primeiroDigito = parseInt(numeroCEP.charAt(0));
 
-        }
+                if (primeiroDigito <= 1) {
+                    valorFrete = 20;
+                }
 
+                else if (primeiroDigito <= 3) {
+                    valorFrete = 25;
+                }
 
-        cupomAplicado = true;
+                else if (primeiroDigito <= 5) {
+                    valorFrete = 30;
+                }
 
-        mensagemCupom.textContent =
-          "Cupom aplicado com sucesso! Você ganhou 10% de desconto.";
+                else if (primeiroDigito <= 7) {
+                    valorFrete = 35;
+                }
 
+                else {
+                    valorFrete = 40;
+                }
 
-        cupom.disabled = true;
+                mensagemFrete.textContent =
+                    "Frete calculado com sucesso!";
 
-        aplicarCupom.disabled = true;
+                atualizarTotal();
 
+            });
 
-        atualizarTotal();
+            /* FORMATAR CEP */
 
-      }
+            cep.addEventListener("input", function() {
 
-      else {
+                let valorCEP = cep.value.replace(/\D/g, "");
 
-        mensagemCupom.textContent =
-          "Cupom inválido. Tente novamente.";
+                if (valorCEP.length > 5) {
+                    valorCEP =
+                        valorCEP.substring(0, 5) +
+                        "-" +
+                        valorCEP.substring(5, 8);
+                }
 
-      }
+                cep.value = valorCEP;
 
-    });
+            });
 
+            /* FINALIZAR COMPRA */
 
-    /*============================================================
-    CALCULAR FRETE PELO CEP
-    ============================================================*/
+            botaoFinalizar.addEventListener("click", function() {
 
-    calcularFrete.addEventListener(
-      "click",
-      function() {
+                if (produtosCarrinho.length === 0) {
+                    alert("Seu carrinho está vazio!");
+                    return;
+                }
 
-        if (carrinho.length === 0) {
+                if (cep.value.replace(/\D/g, "").length !== 8) {
+                    alert("Digite um CEP válido!");
+                    return;
+                }
 
-          mensagemFrete.textContent =
-            "Adicione um produto ao carrinho primeiro.";
+                alert("Compra finalizada com sucesso!");
 
-          valorFrete = 0;
+                /* LIMPAR CARRINHO */
 
-          atualizarTotal();
+                produtosCarrinho = [];
+                sessionStorage.removeItem("carrinho");
 
-          return;
+                /* LIMPAR CEP */
 
-        }
+                cep.value = "";
 
+                /* ZERAR FRETE E DESCONTO */
 
-        let numeroCEP =
-          cep.value.replace(/\D/g, "");
+                valorFrete = 0;
+                valorDesconto = 0;
+                cupomAplicado = false;
 
+                /* LIMPAR CUPOM */
 
-        if (numeroCEP.length !== 8) {
+                campoCupom.value = "";
+                campoCupom.disabled = false;
+                botaoAplicarCupom.disabled = false;
+                mensagemCupom.textContent = "";
 
-          mensagemFrete.textContent =
-            "Digite um CEP válido com 8 números.";
+                /* LIMPAR MENSAGEM DO FRETE */
 
-          valorFrete = 0;
+                mensagemFrete.textContent = "";
 
-          atualizarTotal();
+                /* ATUALIZAR TELA */
 
-          return;
+                mostrarCarrinho();
 
-        }
+            });
 
+            /* INICIAR CARRINHO */
 
-        /*
-        AS FAIXAS ABAIXO SÃO UMA SIMULAÇÃO
-        PARA O PROJETO ESCOLAR.
-        */
+            mostrarCarrinho();
 
+        })();
+    </script>
 
-        const primeiroDigito =
-          parseInt(numeroCEP.charAt(0));
-
-
-        if (primeiroDigito <= 1) {
-
-          valorFrete = 20;
-
-        }
-
-        else if (primeiroDigito <= 3) {
-
-          valorFrete = 25;
-
-        }
-
-        else if (primeiroDigito <= 5) {
-
-          valorFrete = 30;
-
-        }
-
-        else if (primeiroDigito <= 7) {
-
-          valorFrete = 35;
-
-        }
-
-        else {
-
-          valorFrete = 40;
-
-        }
-
-
-        mensagemFrete.textContent =
-          "Frete calculado com sucesso!";
-
-
-        atualizarTotal();
-
-      }
-
-    );
-
-
-    /*============================================================
-    FORMATAR CEP
-    ============================================================*/
-
-    cep.addEventListener(
-      "input",
-      function() {
-
-        let valor =
-          cep.value.replace(/\D/g, "");
-
-
-        if (valor.length > 5) {
-
-          valor =
-            valor.substring(0, 5) +
-            "-" +
-            valor.substring(5, 8);
-
-        }
-
-
-        cep.value = valor;
-
-      }
-
-    );
-
-
-    /*============================================================
-    FINALIZAR COMPRA
-    ============================================================*/
-
-    botaoFinalizar.addEventListener(
-      "click",
-      function() {
-
-        if (carrinho.length === 0) {
-
-          alert("Seu carrinho está vazio!");
-
-          return;
-
-        }
-
-
-        if (cep.value.replace(/\D/g, "").length !== 8) {
-
-          alert("Digite um CEP válido!");
-
-          return;
-
-        }
-
-
-        alert("Compra finalizada com sucesso!");
-
-
-        // LIMPAR CARRINHO
-
-        carrinho = [];
-
-        sessionStorage.removeItem("carrinho");
-
-
-        // LIMPAR CEP
-
-        cep.value = "";
-
-        // ZERAR FRETE
-        valorFrete = 0;
-
-        // ZERAR DESCONTO
-        valorDesconto = 0;
-        cupomAplicado = false;
-
-        // LIMPAR CUPOM
-
-        cupom.value = "";
-        cupom.disabled = false;
-        aplicarCupom.disabled = false;
-        mensagemCupom.textContent = "";
-
-        // LIMPAR MENSAGEM DO FRETE
-        mensagemFrete.textContent = "";
-
-        // ATUALIZAR TELA
-
-        mostrarCarrinho();
-
-      }
-
-    );
-
-
-    /*============================================================
-    INICIAR CARRINHO
-    ============================================================*/
-
-    mostrarCarrinho();
-
-  </script>
 </body>
 </html>

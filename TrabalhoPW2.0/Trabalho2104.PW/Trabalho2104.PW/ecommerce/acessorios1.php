@@ -1,212 +1,313 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="acessorios1.html">
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <?php include "cabecalho.php"; ?>
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-  </div>
+    <!-- PRODUTO -->
 
-  <section class="produto-container" id="acessorios1">
-    <div class="produto-img">
-      <img src="fotos/acessorios/acessorios1.jpg" alt="Acessórios de Minions">
-    </div>
+    <section class="produto-container" id="acessorios1">
 
-    <div class="produto-info">
-      <h2>Acessórios de Minions</h2>
+        <div class="produto-img">
+            <img src="fotos/acessorios/acessorios1.jpg" alt="Acessórios de Minions">
+        </div>
 
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+        <div class="produto-info">
 
-      <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1">
+            <h2>Acessórios de Minions</h2>
 
-      <p id="valorParcial" class="valor-parcial">Valor parcial: R$ 87,90</p>
+            <p class="preco">R$ 87,90 à vista</p>
+            <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-      <h3>Formas de pagamento</h3>
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+            <label for="quantidade">Quantidade:</label>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+            <input type="number" id="quantidade" value="1" min="1">
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
-    </div>
-  </section>
+            <p id="valorParcial" class="valor-parcial">
+                Valor parcial: R$ 87,90
+            </p>
 
-  <section class="produto-descricao">
-    <div>
-      <h2>Descrição do Produto</h2>
-      <p>
-        Acessórios de Minions, perfeitos para festas, aniversários
-        e eventos temáticos. Confortáveis, leves e divertidos.
-      </p>
-    </div>
+            <h3>Formas de pagamento</h3>
 
-    <div>
-      <h2>Características</h2>
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 0 a 60+ anos</li>
-        <li>Inclui: óculos + toca + luvas</li>
-        <li>Cor: amarelo e azul</li>
-      </ul>
-    </div>
-  </section>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-  <section>
-    <h2>Avaliações</h2>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
-  </section>
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+    <!-- DESCRIÇÃO E CARACTERÍSTICAS -->
 
-  <script>
-    const precoProduto = 87.90;
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+    <section class="produto-descricao">
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+        <div>
 
-    function atualizarPreco() {
-      const qtd = Number(quantidade.value);
+            <h2>Descrição do Produto</h2>
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+            <p>
+                Acessórios de Minions, perfeitos para festas, aniversários
+                e eventos temáticos. Confortáveis, leves e divertidos.
+            </p>
 
-      valorParcial.textContent =
-        "Valor parcial: " + formatarPreco(precoProduto * qtd);
-    }
+        </div>
 
-    quantidade.addEventListener("input", atualizarPreco);
+        <div>
 
-    botaoAdicionar.addEventListener("click", function() {
-      const qtd = Number(quantidade.value);
+            <h2>Características</h2>
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 0 a 60+ anos</li>
+                <li>Inclui: óculos + toca + luvas</li>
+                <li>Cor: amarelo e azul</li>
+            </ul>
 
-      const produto = {
-        nome: "Acessórios de Minions",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/acessorios/acessorios1.jpg"
-      };
+        </div>
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+    </section>
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+    <!-- AVALIAÇÕES -->
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+    <section>
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-    });
+        <h2>Avaliações</h2>
 
-    atualizarPreco();
-  </script>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
+
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
+
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
+
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+
+    <!-- SCRIPT DE BUSCA -->
+
+    <script src="script.js"></script>
+
+
+    <!-- SCRIPT DO PRODUTO E CARRINHO -->
+
+    <script>
+
+    (function() {
+
+        const precoProdutoMinions = 87.90;
+
+        const quantidadeMinions =
+            document.getElementById("quantidade");
+
+        const valorParcialMinions =
+            document.getElementById("valorParcial");
+
+        const botaoAdicionarMinions =
+            document.getElementById("adicionarCarrinho");
+
+        const mensagemCarrinhoMinions =
+            document.getElementById("mensagemCarrinho");
+
+
+        function formatarPrecoMinions(valor) {
+
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+        }
+
+
+        // ATUALIZAR VALOR PARCIAL
+
+        function atualizarPrecoMinions() {
+
+            const qtd = Number(quantidadeMinions.value);
+
+            if (!Number.isInteger(qtd) || qtd < 1) {
+
+                valorParcialMinions.textContent =
+                    "Informe uma quantidade válida.";
+
+                return;
+
+            }
+
+            valorParcialMinions.textContent =
+                "Valor parcial: " +
+                formatarPrecoMinions(precoProdutoMinions * qtd);
+
+        }
+
+
+        quantidadeMinions.addEventListener(
+            "input",
+            atualizarPrecoMinions
+        );
+
+
+        // ADICIONAR AO CARRINHO
+
+        botaoAdicionarMinions.addEventListener(
+            "click",
+            function() {
+
+                const qtd = Number(quantidadeMinions.value);
+
+                if (!Number.isInteger(qtd) || qtd < 1) {
+
+                    mensagemCarrinhoMinions.style.display = "block";
+
+                    mensagemCarrinhoMinions.style.color = "red";
+
+                    mensagemCarrinhoMinions.textContent =
+                        "Escolha uma quantidade válida!";
+
+                    return;
+
+                }
+
+
+                const produtoMinions = {
+
+                    nome: "Acessórios de Minions",
+
+                    preco: precoProdutoMinions,
+
+                    quantidade: qtd,
+
+                    imagem: "fotos/acessorios/acessorios1.jpg"
+
+                };
+
+
+                let carrinho = JSON.parse(
+                    sessionStorage.getItem("carrinho")
+                ) || [];
+
+
+                const produtoExistente = carrinho.find(
+                    function(item) {
+
+                        return item.nome === produtoMinions.nome;
+
+                    }
+                );
+
+
+                if (produtoExistente) {
+
+                    produtoExistente.quantidade += qtd;
+
+                } else {
+
+                    carrinho.push(produtoMinions);
+
+                }
+
+
+                sessionStorage.setItem(
+                    "carrinho",
+                    JSON.stringify(carrinho)
+                );
+
+
+                mensagemCarrinhoMinions.style.display = "block";
+
+                mensagemCarrinhoMinions.style.color = "#faf06b";
+
+                mensagemCarrinhoMinions.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " +
+                    formatarPrecoMinions(precoProdutoMinions * qtd);
+
+            }
+        );
+
+
+        // INICIAR
+
+        atualizarPrecoMinions();
+
+    })();
+
+    </script>
 
 </body>
 </html>

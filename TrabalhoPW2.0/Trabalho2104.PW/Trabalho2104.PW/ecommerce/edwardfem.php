@@ -1,213 +1,236 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="edwardfem.html">
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <?php include "cabecalho.php"; ?>
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+    <section class="produto-container" id="edwardfem">
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-  </div>
+        <div class="produto-img">
+            <img src="fotos/femininas/edward.jpeg" alt="Fantasia de Edward">
+        </div>
 
-  <section class="produto-container" id="edwardfem">
-    <div class="produto-img">
-      <img src="fotos/femininas/edward.jpeg" alt="Fantasia de Edward">
-    </div>
+        <div class="produto-info">
 
-    <div class="produto-info">
-      <h2>Fantasia de Edward, de Edward Mãos de Tesoura</h2>
+            <h2>Fantasia de Edward, de Edward Mãos de Tesoura</h2>
 
-      <p class="preco">R$ 150,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <p class="preco">R$ 150,00 à vista</p>
+            <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-      <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" value="1" min="1">
 
-      <p id="valorParcial" class="valor-parcial">Valor parcial: R$ 150,00</p>
+            <p id="valorParcial" class="valor-parcial">
+                Valor parcial: R$ 150,00
+            </p>
 
-      <h3>Formas de pagamento</h3>
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+            <h3>Formas de pagamento</h3>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
-    </div>
-  </section>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-  <section class="produto-descricao">
-    <div>
-      <h2>Descrição do Produto</h2>
-      <p>
-        Fantasia completa do Edward Mãos de Tesoura, perfeita para festas,
-        aniversários e eventos temáticos. Confortável, leve e divertida.
-      </p>
-    </div>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-    <div>
-      <h2>Características</h2>
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: conjunto + mãos de tesoura</li>
-        <li>Cor: Preto</li>
-      </ul>
-    </div>
-  </section>
+        </div>
 
-  <section>
-    <h2>Avaliações</h2>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <section class="produto-descricao">
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+        <div>
+            <h2>Descrição do Produto</h2>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+            <p>
+                Fantasia completa do Edward Mãos de Tesoura, perfeita para festas,
+                aniversários e eventos temáticos. Confortável, leve e divertida.
+            </p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
-  </section>
+        <div>
+            <h2>Características</h2>
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: conjunto + mãos de tesoura</li>
+                <li>Cor: Preto</li>
+            </ul>
+        </div>
 
-  <script>
-    const precoProduto = 150;
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+    </section>
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+    <section>
 
-    function atualizarPreco() {
-      const qtd = Number(quantidade.value);
+        <h2>Avaliações</h2>
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-      valorParcial.textContent =
-        "Valor parcial: " + formatarPreco(precoProduto * qtd);
-    }
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-    quantidade.addEventListener("input", atualizarPreco);
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-    botaoAdicionar.addEventListener("click", function() {
-      const qtd = Number(quantidade.value);
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+    </section>
 
-      const produto = {
-        nome: "Fantasia de Edward Mãos de Tesoura FEM",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/femininas/edward.jpeg"
-      };
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+    <script src="script.js"></script>
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+    <script>
+        (function() {
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+            const precoProdutoEdward = 150;
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+            const quantidadeEdward = document.getElementById("quantidade");
+            const valorParcialEdward = document.getElementById("valorParcial");
+            const botaoAdicionarEdward = document.getElementById("adicionarCarrinho");
+            const mensagemCarrinhoEdward = document.getElementById("mensagemCarrinho");
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-    });
+            function formatarPrecoEdward(valor) {
+                return valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+            }
 
-    atualizarPreco();
-  </script>
+            function atualizarPrecoEdward() {
+
+                const qtd = Number(quantidadeEdward.value);
+
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    valorParcialEdward.textContent =
+                        "Informe uma quantidade válida.";
+                    return;
+                }
+
+                valorParcialEdward.textContent =
+                    "Valor parcial: " +
+                    formatarPrecoEdward(precoProdutoEdward * qtd);
+
+            }
+
+            quantidadeEdward.addEventListener("input", atualizarPrecoEdward);
+
+            botaoAdicionarEdward.addEventListener("click", function() {
+
+                const qtd = Number(quantidadeEdward.value);
+
+                if (!Number.isInteger(qtd) || qtd < 1) {
+
+                    mensagemCarrinhoEdward.style.display = "block";
+                    mensagemCarrinhoEdward.style.color = "red";
+                    mensagemCarrinhoEdward.textContent =
+                        "Escolha uma quantidade válida!";
+
+                    return;
+                }
+
+                const produto = {
+                    nome: "Fantasia de Edward Mãos de Tesoura FEM",
+                    preco: precoProdutoEdward,
+                    quantidade: qtd,
+                    imagem: "fotos/femininas/edward.jpeg"
+                };
+
+                let carrinho = JSON.parse(
+                    sessionStorage.getItem("carrinho")
+                ) || [];
+
+                const produtoExistente = carrinho.find(function(item) {
+                    return item.nome === produto.nome;
+                });
+
+                if (produtoExistente) {
+                    produtoExistente.quantidade += qtd;
+                } else {
+                    carrinho.push(produto);
+                }
+
+                sessionStorage.setItem(
+                    "carrinho",
+                    JSON.stringify(carrinho)
+                );
+
+                mensagemCarrinhoEdward.style.display = "block";
+                mensagemCarrinhoEdward.style.color = "#faf06b";
+
+                mensagemCarrinhoEdward.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " +
+                    formatarPrecoEdward(precoProdutoEdward * qtd);
+
+            });
+
+            atualizarPrecoEdward();
+
+        })();
+    </script>
 
 </body>
 </html>

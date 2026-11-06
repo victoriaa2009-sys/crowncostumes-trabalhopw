@@ -1,278 +1,242 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-    
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="barney.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="barney">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/unissex/uni3.jpg" alt="Fantasia do Barney">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
 
-    </form>
-  </div>
+            <h2>Fantasia do Barney</h2>
 
+            <p class="preco">R$ 200,00 à vista</p>
 
-  <section class="produto-container" id="barney">
+            <p class="parcelado">ou 2x de R$ 100,00 sem juros</p>
 
-    <div class="produto-img">
-      <img src="fotos/unissex/uni3.jpg" alt="Fantasia do Barney">
-    </div>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-info">
+            <label for="quantidade">Quantidade:</label>
 
-      <h2>Fantasia do Barney</h2>
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-      <p class="preco">R$ 200,00 à vista</p>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 200,00
+            </p>
 
-      <p class="parcelado">ou 2x de R$ 100,00 sem juros</p>
+            <h3>Formas de pagamento</h3>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <label for="quantidade">Quantidade:</label>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 200,00
-      </p>
+        </div>
 
-      <h3>Formas de pagamento</h3>
+    </section>
 
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+    <section class="produto-descricao">
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+        <div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+            <h2>Descrição do Produto</h2>
 
-    </div>
+            <p>
+                Fantasia completa Barney, perfeita para festas, aniversários
+                e eventos temáticos. Confortável, leve e divertida.
+            </p>
 
-  </section>
+        </div>
 
+        <div>
 
-  <section class="produto-descricao">
+            <h2>Características</h2>
 
-    <div>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: conjunto + cabeça do Barney</li>
+                <li>Cor: rosa e verde</li>
+            </ul>
 
-      <h2>Descrição do Produto</h2>
+        </div>
 
-      <p>
-        Fantasia completa Barney, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida.
-      </p>
+    </section>
 
-    </div>
+    <section>
 
-    <div>
+        <h2>Avaliações</h2>
 
-      <h2>Características</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: conjunto + cabeça do Barney</li>
-        <li>Cor: rosa e verde</li>
-      </ul>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
+    </section>
 
-  <section>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    <h2>Avaliações</h2>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <script>
+    (function() {
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+        const precoProdutoBarney = 200;
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+        const quantidadeBarney = document.getElementById("quantidade");
+        const valorParcialBarney = document.getElementById("valorParcial");
+        const botaoAdicionarBarney = document.getElementById("adicionarCarrinho");
+        const mensagemCarrinhoBarney = document.getElementById("mensagemCarrinho");
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+        function formatarPrecoBarney(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
 
-  </section>
+        function atualizarPrecoBarney() {
 
+            const qtd = Number(quantidadeBarney.value);
 
-  <script>
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                valorParcialBarney.textContent =
+                    "Informe uma quantidade válida.";
+                return;
+            }
 
-    // Preço unitário do produto
-    const precoProduto = 200;
+            const total = precoProdutoBarney * qtd;
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+            valorParcialBarney.textContent =
+                "Valor total: " + formatarPrecoBarney(total);
+        }
 
+        quantidadeBarney.addEventListener("input", atualizarPrecoBarney);
+        quantidadeBarney.addEventListener("change", atualizarPrecoBarney);
 
-    // Formata o preço em reais
-    function formatarPreco(valor) {
+        botaoAdicionarBarney.addEventListener("click", function() {
 
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
+            const qtd = Number(quantidadeBarney.value);
 
-    }
+            if (!Number.isInteger(qtd) || qtd < 1) {
 
+                mensagemCarrinhoBarney.style.display = "block";
+                mensagemCarrinhoBarney.style.color = "red";
+                mensagemCarrinhoBarney.textContent =
+                    "Escolha uma quantidade válida!";
 
-    // Atualiza o preço conforme a quantidade
-    function atualizarPreco() {
+                return;
+            }
 
-      let qtd = Number(quantidade.value);
+            const produtoBarney = {
+                nome: "Fantasia do Barney",
+                preco: precoProdutoBarney,
+                quantidade: qtd,
+                imagem: "fotos/unissex/uni3.jpg"
+            };
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+            let carrinhoBarney =
+                JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-      const total = precoProduto * qtd;
+            const produtoExistenteBarney = carrinhoBarney.find(function(item) {
+                return item.nome === produtoBarney.nome;
+            });
 
-      valorParcial.textContent = "Valor total: " + formatarPreco(total);
+            if (produtoExistenteBarney) {
+                produtoExistenteBarney.quantidade += qtd;
+            } else {
+                carrinhoBarney.push(produtoBarney);
+            }
 
-    }
+            sessionStorage.setItem(
+                "carrinho",
+                JSON.stringify(carrinhoBarney)
+            );
 
+            mensagemCarrinhoBarney.style.display = "block";
+            mensagemCarrinhoBarney.style.color = "#faf06b";
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            mensagemCarrinhoBarney.innerHTML =
+                "✓ Produto adicionado ao carrinho!<br><br>" +
+                "Quantidade: " + qtd + "<br>" +
+                "Valor: " +
+                formatarPrecoBarney(precoProdutoBarney * qtd);
 
+        });
 
-    // Adiciona o produto ao carrinho
-    botaoAdicionar.addEventListener("click", function() {
+        atualizarPrecoBarney();
 
-      const qtd = Number(quantidade.value);
-
-      if (!Number.isInteger(qtd) || qtd < 1) {
-
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-
-        return;
-
-      }
-
-      const produto = {
-
-        nome: "Fantasia do Barney",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/unissex/uni3.jpg"
-
-      };
-
-
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
-
-
-      const produtoExistente = carrinho.find(function(item) {
-
-        return item.nome === produto.nome;
-
-      });
-
-
-      if (produtoExistente) {
-
-        produtoExistente.quantidade += qtd;
-
-      } else {
-
-        carrinho.push(produto);
-
-      }
-
-
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-
-
-      // Mostra a mensagem de confirmação
-      mensagemCarrinho.style.display = "block";
-
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-
-    });
-
-
-    // Mostra o preço inicial
-    atualizarPreco();
-
-  </script>
-
-
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+    })();
+    </script>
 
 </body>
+</html>

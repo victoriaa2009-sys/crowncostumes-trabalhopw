@@ -1,91 +1,80 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
-  
-  <div class="topo">
-    <form class="barra" action="kids.html">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
-      <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
-      </div>
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-</div>
+    <?php include "cabecalho.php"; ?>
 
-<section>
-  <h2>Explore Nossa Coleção Exclusiva Infantil</h2>
+    <section>
 
-      <div class="produtos">
+        <h2>Explore Nossa Coleção Exclusiva Infantil</h2>
 
-        <a href="mickeykids.html" alt="Fantasia Mickey Mouse infantil" class="produto">
-          <img src="fotos/kids/Mickeymouse.webp" alt="Fantasia Mickey Mouse infantil">
-          <h3>Mickey Mouse</h3>
-          <p class="preco">R$ 188,99 à vista</p>
-          <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-        </a>
+        <div class="produtos">
 
-        <a href="moanakids.html" alt="Fantasia Moana infantil" class="produto">
-          <img src="fotos/kids/Moanakids.webp" alt="Fantasia Moana infantil">
-          <h3>Moana</h3>
-          <p class="preco">R$ 148,98 à vista</p>
-          <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-        </a>
+            <a href="mickeykids.php" class="produto">
+                <img src="fotos/kids/Mickeymouse.webp" alt="Fantasia Mickey Mouse infantil">
+                <h3>Mickey Mouse</h3>
+                <p class="preco">R$ 188,99 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-        <a href="piratakids.html" alt="Fantasia de Pirata infantil" class="produto">
-          <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de Pirata infantil">
-          <h3>Pirata</h3>
-          <p class="preco">R$ 168,78 à vista</p>
-          <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
-        </a>
+            <a href="moanakids.php" class="produto">
+                <img src="fotos/kids/Moanakids.webp" alt="Fantasia Moana infantil">
+                <h3>Moana</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-      </div>
+            <a href="piratakids.php" class="produto">
+                <img src="fotos/kids/Pirataskids.webp" alt="Fantasia de Pirata infantil">
+                <h3>Pirata</h3>
+                <p class="preco">R$ 168,78 à vista</p>
+                <p class="parcelado">ou 3x de R$ 56,26 sem juros</p>
+            </a>
 
-      <div class="produtos">
+        </div>
 
-        <a href="palhacokids.html" alt="Fantasia Palhaço infantil" class="produto">
-          <img src="fotos/kids/palhacokids.webp" alt="Fantasia Palhaço infantil">
-          <h3>Palhaço</h3>
-          <p class="preco">R$ 148,98 à vista</p>
-          <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-        </a>
+        <div class="produtos">
 
-        <a href="brancadenevekids.html" alt="Fantasia Branca de Neve infantil" class="produto">
-          <img src="fotos/kids/brancadenevekids.webp" alt="Fantasia Branca de Neve infantil">
-          <h3>Branca de Neve</h3>
-          <p class="preco">R$ 148,98 à vista</p>
-          <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-        </a>
+            <a href="palhacokids.php" class="produto">
+                <img src="fotos/kids/palhacokids.webp" alt="Fantasia Palhaço infantil">
+                <h3>Palhaço</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
+            <a href="brancadenevekids.php" class="produto">
+                <img src="fotos/kids/brancadenevekids.webp" alt="Fantasia Branca de Neve infantil">
+                <h3>Branca de Neve</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-      </div>
+        </div>
 
-</section>
+    </section>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

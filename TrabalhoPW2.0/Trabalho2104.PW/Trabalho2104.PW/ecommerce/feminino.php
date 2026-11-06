@@ -1,87 +1,77 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
-  
-  <div class="topo">
-    <form class="barra" action="feminino.html">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
-      <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
-      </div>
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-</div>
+    <?php include "cabecalho.php"; ?>
 
-<section>
-  <h2>Explore Nossa Coleção Exclusiva Feminina</h2>
+    <section>
+        <h2>Explore Nossa Coleção Exclusiva Feminina</h2>
 
-  <div class="produtos">
+        <div class="produtos">
 
-      <a href="alice.html" class="produto">
-        <img src="fotos/femininas/Alice.jpg" alt="Fantasia Alice, de Alice no País das Maravilhas">
-        <h3>Alice, de Alice no País das Maravilhas</h3>
-        <p class="preco">R$ 150,00 à vista</p>
-        <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      </a>
+            <a href="alice.php" class="produto">
+                <img src="fotos/femininas/Alice.jpg" alt="Fantasia Alice, de Alice no País das Maravilhas">
+                <h3>Alice, de Alice no País das Maravilhas</h3>
+                <p class="preco">R$ 150,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            </a>
 
-      <a href="belaeafera.html" class="produto">
-        <img src="fotos/femininas/Belaeafera.webp" alt="Fantasia Bela, de Bela e a Fera">
-        <h3>Bela, de Bela e a Fera</h3>
-        <p class="preco">R$ 150,00 à vista</p>
-        <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      </a>
+            <a href="belaeafera.php" class="produto">
+                <img src="fotos/femininas/Belaeafera.webp" alt="Fantasia Bela, de Bela e a Fera">
+                <h3>Bela, de Bela e a Fera</h3>
+                <p class="preco">R$ 150,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            </a>
 
-      <a href="magica.html" class="produto">
-        <img src="fotos/femininas/magica.jpeg" alt="Fantasia Mágica">
-        <h3>Mágica</h3>
-        <p class="preco">R$ 150,00 à vista</p>
-        <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      </a>
-  </div>
+            <a href="magica.php" class="produto">
+                <img src="fotos/femininas/magica.jpeg" alt="Fantasia Mágica">
+                <h3>Mágica</h3>
+                <p class="preco">R$ 150,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            </a>
 
-  <div class="produtos">
-      <a href="edwardfem.html" class="produto">
-        <img src="fotos/femininas/edward.jpeg" alt="Fantasia Edward, de Edward Mãos de Tesoura">
-        <h3>Edward, de Edward Mãos de Tesoura</h3>
-        <p class="preco">R$ 150,00 à vista</p>
-        <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      </a>
+        </div>
 
-      <a href="mariofem.html" class="produto">
-        <img src="fotos/femininas/mario.jpeg" alt="Fantasia Mario">
-        <h3>Super Mario FEM</h3>
-        <p class="preco">R$ 150,00 à vista</p>
-        <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      </a>
+        <div class="produtos">
 
-  </div>
-</section>
+            <a href="edwardfem.php" class="produto">
+                <img src="fotos/femininas/edward.jpeg" alt="Fantasia Edward, de Edward Mãos de Tesoura">
+                <h3>Edward, de Edward Mãos de Tesoura</h3>
+                <p class="preco">R$ 150,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            </a>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+            <a href="mariofem.php" class="produto">
+                <img src="fotos/femininas/mario.jpeg" alt="Fantasia Mario">
+                <h3>Super Mario FEM</h3>
+                <p class="preco">R$ 150,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            </a>
 
-<script src="script.js"></script>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

@@ -1,241 +1,228 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
+    <?php include "cabecalho.php"; ?>
 
-    <form class="barra" action="magica.html">
+    <section class="produto-container" id="magica">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/femininas/magica.jpeg" alt="Fantasia de Mágica Feminina">
+        </div>
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-info">
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+            <h2>Fantasia de Mágica</h2>
 
-    </form>
+            <p class="preco">R$ 150,00 à vista</p>
+            <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-  </div>
+            <label for="quantidadeMagica">Quantidade:</label>
 
-  <section class="produto-container" id="magica">
+            <input type="number" id="quantidadeMagica" value="1" min="1" step="1">
 
-    <div class="produto-img">
-      <img src="fotos/femininas/magica.jpeg" alt="Fantasia de Mágica Feminina">
-    </div>
+            <p id="valorParcialMagica" class="valor-parcial">
+                Valor total: R$ 150,00
+            </p>
 
-    <div class="produto-info">
+            <h3>Formas de pagamento</h3>
 
-      <h2>Fantasia de Mágica</h2>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <p class="preco">R$ 150,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <button class="btn" id="adicionarCarrinhoMagica" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <label for="quantidade">Quantidade:</label>
+            <div id="mensagemCarrinhoMagica" class="mensagem-carrinho"></div>
 
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+        </div>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 150,00
-      </p>
+    </section>
 
-      <h3>Formas de pagamento</h3>
+    <section class="produto-descricao">
 
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+        <div>
+            <h2>Descrição do Produto</h2>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+            <p>
+                Fantasia completa de Mágica, perfeita para festas,
+                aniversários e eventos temáticos.
+                Confortável, leve e divertida.
+            </p>
+        </div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+        <div>
+            <h2>Características</h2>
 
-    </div>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: vestido + colar</li>
+                <li>Cor: preto e vermelho</li>
+            </ul>
+        </div>
 
-  </section>
+    </section>
 
-  <section class="produto-descricao">
+    <section>
 
-    <div>
-      <h2>Descrição do Produto</h2>
+        <h2>Avaliações</h2>
 
-      <p>
-        Fantasia completa de Mágica, perfeita para festas,
-        aniversários e eventos temáticos.
-        Confortável, leve e divertida.
-      </p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-    <div>
-      <h2>Características</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: vestido + colar</li>
-        <li>Cor: preto e vermelho</li>
-      </ul>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-  <section>
+    </section>
 
-    <h2>Avaliações</h2>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+    <script>
+    (function() {
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+        const precoMagica = 150;
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+        const quantidadeMagica = document.getElementById("quantidadeMagica");
+        const valorParcialMagica = document.getElementById("valorParcialMagica");
+        const botaoAdicionarMagica = document.getElementById("adicionarCarrinhoMagica");
+        const mensagemCarrinhoMagica = document.getElementById("mensagemCarrinhoMagica");
 
-  </section>
+        function formatarPrecoMagica(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
 
-  <script>
+        function atualizarPrecoMagica() {
 
-    const precoProduto = 150;
+            const qtd = Number(quantidadeMagica.value);
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                valorParcialMagica.textContent = "Informe uma quantidade válida.";
+                return;
+            }
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+            valorParcialMagica.textContent =
+                "Valor total: " + formatarPrecoMagica(precoMagica * qtd);
+        }
 
-    function atualizarPreco() {
+        quantidadeMagica.addEventListener("input", atualizarPrecoMagica);
+        quantidadeMagica.addEventListener("change", atualizarPrecoMagica);
 
-      const qtd = Number(quantidade.value);
+        botaoAdicionarMagica.addEventListener("click", function() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+            const qtd = Number(quantidadeMagica.value);
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                mensagemCarrinhoMagica.style.display = "block";
+                mensagemCarrinhoMagica.style.color = "red";
+                mensagemCarrinhoMagica.textContent = "Escolha uma quantidade válida!";
+                return;
+            }
 
-    }
+            const produtoMagica = {
+                nome: "Fantasia de Mágica",
+                preco: precoMagica,
+                quantidade: qtd,
+                imagem: "fotos/femininas/magica.jpeg"
+            };
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            let carrinhoMagica =
+                JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-    botaoAdicionar.addEventListener("click", function() {
+            const produtoExistenteMagica = carrinhoMagica.find(function(item) {
+                return item.nome === produtoMagica.nome;
+            });
 
-      const qtd = Number(quantidade.value);
+            if (produtoExistenteMagica) {
+                produtoExistenteMagica.quantidade += qtd;
+            } else {
+                carrinhoMagica.push(produtoMagica);
+            }
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+            sessionStorage.setItem("carrinho", JSON.stringify(carrinhoMagica));
 
-      const produto = {
-        nome: "Fantasia de Mágica",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/femininas/magica.jpeg"
-      };
+            mensagemCarrinhoMagica.style.display = "block";
+            mensagemCarrinhoMagica.style.color = "#faf06b";
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+            mensagemCarrinhoMagica.innerHTML =
+                "✓ Produto adicionado ao carrinho!<br><br>" +
+                "Quantidade: " + qtd + "<br>" +
+                "Valor: " + formatarPrecoMagica(precoMagica * qtd);
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+        });
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+        atualizarPrecoMagica();
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
-
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-
-    });
-
-    atualizarPreco();
-
-  </script>
-
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+    })();
+    </script>
 
 </body>
 </html>

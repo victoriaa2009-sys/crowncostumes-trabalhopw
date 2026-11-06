@@ -1,89 +1,78 @@
 
-```html
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
-  
-  <div class="topo">
-    <form class="barra" action="masculino.html">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
-      <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
-      </div>
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-</div>
+    <?php include "cabecalho.php"; ?>
 
-<section>
-  <h2>Explore Nossa Coleção Exclusiva Masculina</h2>
+    <section>
+        <h2>Explore Nossa Coleção Exclusiva Masculina</h2>
 
-  <div class="produtos">
+        <div class="produtos">
 
-      <a href="davidbowie.html" class="produto">
-        <img src="fotos/masculinas/anos80.jpg" alt="Fantasia de David Bowie">
-        <h3>David Bowie</h3>
-        <p class="preco">R$ 148,98 à vista</p>
-        <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-      </a>
+            <a href="davidbowie.php" class="produto">
+                <img src="fotos/masculinas/anos80.jpg" alt="Fantasia de David Bowie">
+                <h3>David Bowie</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-      <a href="magico.html" class="produto">
-        <img src="fotos/masculinas/mágico.jpg" alt="Fantasia de Mágico">
-        <h3>Mágico</h3>
-        <p class="preco">R$ 148,98 à vista</p>
-        <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-      </a>
+            <a href="magico.php" class="produto">
+                <img src="fotos/masculinas/mágico.jpg" alt="Fantasia de Mágico">
+                <h3>Mágico</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-      <a href="maskara.html" class="produto">
-        <img src="fotos/masculinas/mascara.jpg" alt="Fantasia de Máskara">
-        <h3>Máskara</h3>
-        <p class="preco">R$ 148,98 à vista</p>
-        <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-      </a>
-  </div>
+            <a href="maskara.php" class="produto">
+                <img src="fotos/masculinas/mascara.jpg" alt="Fantasia de Máskara">
+                <h3>Máskara</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-  <div class="produtos">
-      <a href="palhaco.html" class="produto">
-        <img src="fotos/masculinas/palhaço.jpg" alt="Fantasia de Palhaço">
-        <h3>It a coisa</h3>
-        <p class="preco">R$ 148,98 à vista</p>
-        <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-      </a>
+        </div>
 
-      <a href="woody.html" class="produto">
-        <img src="fotos/masculinas/woody.jpg" alt="Fantasia de Woody">
-        <h3>Woody</h3>
-        <p class="preco">R$ 148,98 à vista</p>
-        <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
-      </a>
+        <div class="produtos">
 
-  </div>
-</section>
+            <a href="palhaco.php" class="produto">
+                <img src="fotos/masculinas/palhaço.jpg" alt="Fantasia de Palhaço">
+                <h3>It a coisa</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+            <a href="woody.php" class="produto">
+                <img src="fotos/masculinas/woody.jpg" alt="Fantasia de Woody">
+                <h3>Woody</h3>
+                <p class="preco">R$ 148,98 à vista</p>
+                <p class="parcelado">ou 3x de R$ 62,99 sem juros</p>
+            </a>
 
-  <script src="script.js"></script>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
-

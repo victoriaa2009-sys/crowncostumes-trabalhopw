@@ -10,12 +10,12 @@ if (!isset($_SESSION["usuario_id"])) {
 require_once "php/conexao.php";
 
 $paginasProdutos = [
-    "Minions" => "acessorios1.html",
-    "Espião" => "acessorios2.html",
-    "Mágico" => "acessorios4.html",
-    "Chapéu de Bruxa" => "acessorios6.html",
-    "Fantasia do Máskara" => "maskara.html",
-    "Fantasia de Harry Potter" => "harrypotter.html"
+    "Minions" => "acessorios1.php",
+    "Espião" => "acessorios2.php",
+    "Mágico" => "acessorios4.php",
+    "Chapéu de Bruxa" => "acessorios6.php",
+    "Fantasia do Máskara" => "maskara.php",
+    "Fantasia de Harry Potter" => "harrypotter.php"
 ];
 
 $sql = "SELECT * FROM produtos
@@ -94,11 +94,11 @@ $resultado = $conn->query($sql);
                     Olá, <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>!
                 </span>
 
-                <a href="carrinho.html" class="btn">
+                <a href="carrinho.php" class="btn">
                     Carrinho
                 </a>
 
-                <a href="sobre.html" class="btn">
+                <a href="sobre.php" class="btn">
                     Sobre
                 </a>
 
@@ -118,17 +118,17 @@ $resultado = $conn->query($sql);
 
         <div class="produtos">
 
-            <a href="feminino.html" class="produto">
+            <a href="feminino.php" class="produto">
                 <img src="fotos/femininas/edward.jpeg" alt="Edward">
                 <h3>Feminino</h3>
             </a>
 
-            <a href="masculino.html" class="produto">
+            <a href="masculino.php" class="produto">
                 <img src="fotos/masculinas/mágico.jpg" alt="Fantasia Mágico">
                 <h3>Masculino</h3>
             </a>
 
-            <a href="unissex.html" class="produto">
+            <a href="unissex.php" class="produto">
                 <img src="fotos/unissex/uni7.webp" alt="Fantasia Unissex">
                 <h3>Unissex</h3>
             </a>
@@ -137,12 +137,12 @@ $resultado = $conn->query($sql);
 
         <div class="produtos">
 
-            <a href="acessorios.html" class="produto">
+            <a href="acessorios.php" class="produto">
                 <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
                 <h3>Acessórios</h3>
             </a>
 
-            <a href="kids.html" class="produto">
+            <a href="kids.php" class="produto">
                 <img src="fotos/kids/palhacokids.webp" alt="Fantasia de Palhaço infantil">
                 <h3>Kids</h3>
             </a>

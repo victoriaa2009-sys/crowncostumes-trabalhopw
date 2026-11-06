@@ -41,7 +41,7 @@
 
             <a href="carrinho.php" class="btn">Carrinho</a>
 
-            <a href="sobre.html" class="btn">Sobre</a>
+            <a href="sobre.php" class="btn">Sobre</a>
 
             <a href="logout.php" class="btn">Sair</a>
 

@@ -1,243 +1,227 @@
 
-```html
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
+    <?php include "cabecalho.php"; ?>
 
-    <form class="barra" action="mariofem.html">
+    <section class="produto-container" id="mariofem">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/femininas/mario.jpeg" alt="Fantasia de Super Mario Feminina">
+        </div>
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-info">
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+            <h2>Fantasia de Super Mario FEM</h2>
 
-    </form>
+            <p class="preco">R$ 150,00 à vista</p>
+            <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-  </div>
+            <label for="quantidade">Quantidade:</label>
 
-  <section class="produto-container" id="mariofem">
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-    <div class="produto-img">
-      <img src="fotos/femininas/mario.jpeg" alt="Fantasia de Super Mario Feminina">
-    </div>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 150,00
+            </p>
 
-    <div class="produto-info">
+            <h3>Formas de pagamento</h3>
 
-      <h2>Fantasia de Super Mario FEM</h2>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <p class="preco">R$ 150,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 75,00 sem juros</p>
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <label for="quantidade">Quantidade:</label>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+        </div>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 150,00
-      </p>
+    </section>
 
-      <h3>Formas de pagamento</h3>
+    <section class="produto-descricao">
 
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+        <div>
+            <h2>Descrição do Produto</h2>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+            <p>
+                Fantasia completa inspirada no Super Mario,
+                perfeita para festas, aniversários e eventos temáticos.
+                Confortável, leve e divertida.
+            </p>
+        </div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+        <div>
+            <h2>Características</h2>
 
-    </div>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: vestido + colar</li>
+                <li>Cor: azul e vermelho</li>
+            </ul>
+        </div>
 
-  </section>
+    </section>
 
-  <section class="produto-descricao">
+    <section>
 
-    <div>
-      <h2>Descrição do Produto</h2>
+        <h2>Avaliações</h2>
 
-      <p>
-        Fantasia completa inspirada no Super Mario,
-        perfeita para festas, aniversários e eventos temáticos.
-        Confortável, leve e divertida.
-      </p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-    <div>
-      <h2>Características</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: vestido + colar</li>
-        <li>Cor: azul e vermelho</li>
-      </ul>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-  <section>
+    </section>
 
-    <h2>Avaliações</h2>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <script>
+        (function() {
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+            const precoProdutoMarioFem = 150;
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+            const quantidadeMarioFem = document.getElementById("quantidade");
+            const valorParcialMarioFem = document.getElementById("valorParcial");
+            const botaoAdicionarMarioFem = document.getElementById("adicionarCarrinho");
+            const mensagemCarrinhoMarioFem = document.getElementById("mensagemCarrinho");
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+            function formatarPrecoMarioFem(valor) {
+                return valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+            }
 
-  </section>
+            function atualizarPrecoMarioFem() {
 
-  <script>
+                const qtd = Number(quantidadeMarioFem.value);
 
-    const precoProduto = 150;
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    valorParcialMarioFem.textContent = "Informe uma quantidade válida.";
+                    return;
+                }
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+                valorParcialMarioFem.textContent =
+                    "Valor total: " + formatarPrecoMarioFem(precoProdutoMarioFem * qtd);
+            }
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+            quantidadeMarioFem.addEventListener("input", atualizarPrecoMarioFem);
+            quantidadeMarioFem.addEventListener("change", atualizarPrecoMarioFem);
 
-    function atualizarPreco() {
+            botaoAdicionarMarioFem.addEventListener("click", function() {
 
-      const qtd = Number(quantidade.value);
+                const qtd = Number(quantidadeMarioFem.value);
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    mensagemCarrinhoMarioFem.style.display = "block";
+                    mensagemCarrinhoMarioFem.style.color = "red";
+                    mensagemCarrinhoMarioFem.textContent = "Escolha uma quantidade válida!";
+                    return;
+                }
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
+                const produto = {
+                    nome: "Fantasia de Super Mario FEM",
+                    preco: precoProdutoMarioFem,
+                    quantidade: qtd,
+                    imagem: "fotos/femininas/mario.jpeg"
+                };
 
-    }
+                let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+                const produtoExistente = carrinho.find(function(item) {
+                    return item.nome === produto.nome;
+                });
 
-    botaoAdicionar.addEventListener("click", function() {
+                if (produtoExistente) {
+                    produtoExistente.quantidade += qtd;
+                } else {
+                    carrinho.push(produto);
+                }
 
-      const qtd = Number(quantidade.value);
+                sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+                mensagemCarrinhoMarioFem.style.display = "block";
+                mensagemCarrinhoMarioFem.style.color = "#faf06b";
 
-      const produto = {
-        nome: "Fantasia de Super Mario FEM",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/femininas/mario.jpeg"
-      };
+                mensagemCarrinhoMarioFem.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " + formatarPrecoMarioFem(precoProdutoMarioFem * qtd);
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+            });
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+            atualizarPrecoMarioFem();
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+        })();
+    </script>
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
-
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-
-    });
-
-    atualizarPreco();
-
-  </script>
-
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
 </body>
 </html>
-

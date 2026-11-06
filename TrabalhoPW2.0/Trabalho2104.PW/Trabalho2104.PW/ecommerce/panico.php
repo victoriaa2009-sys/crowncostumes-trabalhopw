@@ -1,222 +1,226 @@
 
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="panico.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="panico">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/unissex/uni6.webp" alt="Fantasia do Pânico">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
 
-    </form>
-  </div>
+            <h2>Fantasia do Pânico</h2>
 
-  <section class="produto-container" id="panico">
+            <p class="preco">R$ 148,98 à vista</p>
+            <p class="parcelado">ou 2x de R$ 74,49 sem juros</p>
 
-    <div class="produto-img">
-      <img src="fotos/unissex/uni6.webp" alt="Fantasia do Pânico">
-    </div>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-info">
-      <h2>Fantasia do Pânico</h2>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-      <p class="preco">R$ 148,98 à vista</p>
-      <p class="parcelado">ou 2x de R$ 74,49 sem juros</p>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 148,98
+            </p>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <h3>Formas de pagamento</h3>
 
-      <label>Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 148,98
-      </p>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <h3>Formas de pagamento</h3>
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+        </div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
-    </div>
+    </section>
 
-  </section>
+    <section class="produto-descricao">
 
-  <section class="produto-descricao">
+        <div>
+            <h2>Descrição do Produto</h2>
 
-    <div>
-      <h2>Descrição do Produto</h2>
-      <p>
-        Fantasia completa do Pânico, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida.
-      </p>
-    </div>
+            <p>
+                Fantasia completa do Pânico, perfeita para festas, aniversários
+                e eventos temáticos. Confortável, leve e divertida.
+            </p>
+        </div>
 
-    <div>
-      <h2>Características</h2>
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: vestido + máscara</li>
-        <li>Cor: preto e branco</li>
-      </ul>
-    </div>
+        <div>
+            <h2>Características</h2>
 
-  </section>
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: vestido + máscara</li>
+                <li>Cor: preto e branco</li>
+            </ul>
+        </div>
 
-  <section>
-    <h2>Avaliações</h2>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+        <h2>Avaliações</h2>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-  <script>
-    const precoProduto = 148.98;
+    </section>
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+    <script src="script.js"></script>
 
-    function atualizarPreco() {
-      const qtd = Number(quantidade.value);
+    <script>
+        (function() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+            const precoProdutoPanico = 148.98;
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
-    }
+            const quantidadePanico = document.getElementById("quantidade");
+            const valorParcialPanico = document.getElementById("valorParcial");
+            const botaoAdicionarPanico = document.getElementById("adicionarCarrinho");
+            const mensagemCarrinhoPanico = document.getElementById("mensagemCarrinho");
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            function formatarPrecoPanico(valor) {
+                return valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+            }
 
-    botaoAdicionar.addEventListener("click", function() {
-      const qtd = Number(quantidade.value);
+            function atualizarPrecoPanico() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+                const qtd = Number(quantidadePanico.value);
 
-      const produto = {
-        nome: "Fantasia do Pânico",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/unissex/uni6.webp"
-      };
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    valorParcialPanico.textContent = "Informe uma quantidade válida.";
+                    return;
+                }
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+                valorParcialPanico.textContent =
+                    "Valor total: " + formatarPrecoPanico(precoProdutoPanico * qtd);
+            }
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+            quantidadePanico.addEventListener("input", atualizarPrecoPanico);
+            quantidadePanico.addEventListener("change", atualizarPrecoPanico);
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+            botaoAdicionarPanico.addEventListener("click", function() {
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+                const qtd = Number(quantidadePanico.value);
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-    });
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    mensagemCarrinhoPanico.style.display = "block";
+                    mensagemCarrinhoPanico.style.color = "red";
+                    mensagemCarrinhoPanico.textContent = "Escolha uma quantidade válida!";
+                    return;
+                }
 
-    atualizarPreco();
-  </script>
+                const produto = {
+                    nome: "Fantasia do Pânico",
+                    preco: precoProdutoPanico,
+                    quantidade: qtd,
+                    imagem: "fotos/unissex/uni6.webp"
+                };
+
+                let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+
+                const produtoExistente = carrinho.find(function(item) {
+                    return item.nome === produto.nome;
+                });
+
+                if (produtoExistente) {
+                    produtoExistente.quantidade += qtd;
+                } else {
+                    carrinho.push(produto);
+                }
+
+                sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+                mensagemCarrinhoPanico.style.display = "block";
+                mensagemCarrinhoPanico.style.color = "#faf06b";
+
+                mensagemCarrinhoPanico.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " + formatarPrecoPanico(precoProdutoPanico * qtd);
+
+            });
+
+            atualizarPrecoPanico();
+
+        })();
+    </script>
 
 </body>
 </html>

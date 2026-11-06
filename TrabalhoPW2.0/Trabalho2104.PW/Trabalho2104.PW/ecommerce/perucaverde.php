@@ -1,222 +1,226 @@
 
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="perucaverde.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="perucaverde">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Peruca Verde e Amarela">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
 
-    </form>
-  </div>
+            <h2>Peruca Verde e Amarela</h2>
 
-  <section class="produto-container" id="perucaverde">
+            <p class="preco">R$ 87,90 à vista</p>
+            <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
 
-    <div class="produto-img">
-      <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Peruca Verde e Amarela">
-    </div>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-info">
-      <h2>Peruca Verde e Amarela</h2>
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" value="1" min="1" step="1">
 
-      <p class="preco">R$ 87,90 à vista</p>
-      <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            <p id="valorParcial" class="valor-parcial">
+                Valor total: R$ 87,90
+            </p>
 
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <h3>Formas de pagamento</h3>
 
-      <label>Quantidade:</label>
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 87,90
-      </p>
+            <button class="btn" id="adicionarCarrinho" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <h3>Formas de pagamento</h3>
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+            <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+        </div>
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
-    </div>
+    </section>
 
-  </section>
+    <section class="produto-descricao">
 
-  <section class="produto-descricao">
+        <div>
+            <h2>Descrição do Produto</h2>
 
-    <div>
-      <h2>Descrição do Produto</h2>
-      <p>
-        Peruca Verde e Amarela, perfeita para festas, aniversários
-        e eventos temáticos. Confortável, leve e divertida.
-      </p>
-    </div>
+            <p>
+                Peruca Verde e Amarela, perfeita para festas, aniversários
+                e eventos temáticos. Confortável, leve e divertida.
+            </p>
+        </div>
 
-    <div>
-      <h2>Características</h2>
-      <ul>
-        <li>Material: fibra sintética</li>
-        <li>Tamanhos: 0 a 60+ anos</li>
-        <li>Inclui: peruca</li>
-        <li>Cor: verde e amarelo</li>
-      </ul>
-    </div>
+        <div>
+            <h2>Características</h2>
 
-  </section>
+            <ul>
+                <li>Material: fibra sintética</li>
+                <li>Tamanhos: 0 a 60+ anos</li>
+                <li>Inclui: peruca</li>
+                <li>Cor: verde e amarelo</li>
+            </ul>
+        </div>
 
-  <section>
-    <h2>Avaliações</h2>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    <section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+        <h2>Avaliações</h2>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-  <script>
-    const precoProduto = 87.90;
+    </section>
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+    <script src="script.js"></script>
 
-    function atualizarPreco() {
-      const qtd = Number(quantidade.value);
+    <script>
+        (function() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+            const precoProdutoPeruca = 87.90;
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
-    }
+            const quantidadePeruca = document.getElementById("quantidade");
+            const valorParcialPeruca = document.getElementById("valorParcial");
+            const botaoAdicionarPeruca = document.getElementById("adicionarCarrinho");
+            const mensagemCarrinhoPeruca = document.getElementById("mensagemCarrinho");
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            function formatarPrecoPeruca(valor) {
+                return valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+            }
 
-    botaoAdicionar.addEventListener("click", function() {
-      const qtd = Number(quantidade.value);
+            function atualizarPrecoPeruca() {
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+                const qtd = Number(quantidadePeruca.value);
 
-      const produto = {
-        nome: "Peruca Verde e Amarela",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/acessorios/perucaverdeamarelo.webp"
-      };
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    valorParcialPeruca.textContent = "Informe uma quantidade válida.";
+                    return;
+                }
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+                valorParcialPeruca.textContent =
+                    "Valor total: " + formatarPrecoPeruca(precoProdutoPeruca * qtd);
+            }
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+            quantidadePeruca.addEventListener("input", atualizarPrecoPeruca);
+            quantidadePeruca.addEventListener("change", atualizarPrecoPeruca);
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+            botaoAdicionarPeruca.addEventListener("click", function() {
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+                const qtd = Number(quantidadePeruca.value);
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-    });
+                if (!Number.isInteger(qtd) || qtd < 1) {
+                    mensagemCarrinhoPeruca.style.display = "block";
+                    mensagemCarrinhoPeruca.style.color = "red";
+                    mensagemCarrinhoPeruca.textContent = "Escolha uma quantidade válida!";
+                    return;
+                }
 
-    atualizarPreco();
-  </script>
+                const produto = {
+                    nome: "Peruca Verde e Amarela",
+                    preco: precoProdutoPeruca,
+                    quantidade: qtd,
+                    imagem: "fotos/acessorios/perucaverdeamarelo.webp"
+                };
+
+                let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+
+                const produtoExistente = carrinho.find(function(item) {
+                    return item.nome === produto.nome;
+                });
+
+                if (produtoExistente) {
+                    produtoExistente.quantidade += qtd;
+                } else {
+                    carrinho.push(produto);
+                }
+
+                sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+                mensagemCarrinhoPeruca.style.display = "block";
+                mensagemCarrinhoPeruca.style.color = "#faf06b";
+
+                mensagemCarrinhoPeruca.innerHTML =
+                    "✓ Produto adicionado ao carrinho!<br><br>" +
+                    "Quantidade: " + qtd + "<br>" +
+                    "Valor: " + formatarPrecoPeruca(precoProdutoPeruca * qtd);
+
+            });
+
+            atualizarPrecoPeruca();
+
+        })();
+    </script>
 
 </body>
 </html>

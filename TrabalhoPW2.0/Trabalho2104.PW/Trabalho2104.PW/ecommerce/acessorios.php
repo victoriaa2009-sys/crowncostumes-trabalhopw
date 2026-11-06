@@ -1,85 +1,80 @@
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
 </head>
 
 <body>
-  
-  <div class="topo">
-    <form class="barra" action="acessorios.html">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
-      <div>
-        <span>
-          <input type="text" placeholder="Buscar fantasias..." name="busca">
-          <input type="submit" value="Buscar" class="btn-busca">
-        </span>
-      </div>
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-  </div>
+    <?php include "cabecalho.php"; ?>
 
-  <section>
-    <h2>Explore Nossa Coleção Exclusiva De Acessórios</h2>
+    <section>
 
-    <div class="produtos">
+        <h2>Explore Nossa Coleção Exclusiva De Acessórios</h2>
 
-      <a href="acessorios1.html" class="produto">
-        <img src="fotos/acessorios/acessorios1.jpg" alt="Acessório Minions">
-        <h3>Minions</h3>
-        <p class="preco">R$ 87,90 à vista</p>
-        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      </a>
+        <div class="produtos">
 
-      <a href="acessorios2.html" class="produto">
-        <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
-        <h3>Espião</h3>
-        <p class="preco">R$ 87,90 à vista</p>
-        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      </a>
+            <a href="acessorios1.php" class="produto">
+                <img src="fotos/acessorios/acessorios1.jpg" alt="Acessório Minions">
+                <h3>Minions</h3>
+                <p class="preco">R$ 87,90 à vista</p>
+                <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            </a>
 
-      <a href="acessorios4.html" class="produto">
-        <img src="fotos/acessorios/acessorios4.jpeg" alt="Acessório Mágico">
-        <h3>Mágico</h3>
-        <p class="preco">R$ 87,90 à vista</p>
-        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      </a>
-  </div>
+            <a href="acessorios2.php" class="produto">
+                <img src="fotos/acessorios/acessorios2.jpg" alt="Acessório Espião">
+                <h3>Espião</h3>
+                <p class="preco">R$ 87,90 à vista</p>
+                <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            </a>
 
-  <div class="produtos">
-      <a href="acessorios6.html" class="produto">
-        <img src="fotos/acessorios/acessorios6.jpeg" alt="Acessório Chapéu de Bruxa">
-        <h3>Chapéu de Bruxa</h3>
-        <p class="preco">R$ 87,90 à vista</p>
-        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      </a>
+            <a href="acessorios4.php" class="produto">
+                <img src="fotos/acessorios/acessorios4.jpeg" alt="Acessório Mágico">
+                <h3>Mágico</h3>
+                <p class="preco">R$ 87,90 à vista</p>
+                <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            </a>
 
-      <a href="perucaverde.html" class="produto">
-        <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Acessório Peruca Verde e Amarelo">
-        <h3>Peruca verde e amarelo</h3>
-        <p class="preco">R$ 87,90 à vista</p>
-        <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
-      </a>
+        </div>
 
-    </div>
-  </section>
+        <div class="produtos">
 
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+            <a href="acessorios6.php" class="produto">
+                <img src="fotos/acessorios/acessorios6.jpeg" alt="Acessório Chapéu de Bruxa">
+                <h3>Chapéu de Bruxa</h3>
+                <p class="preco">R$ 87,90 à vista</p>
+                <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            </a>
 
-  <script src="script.js"></script>
+            <a href="perucaverde.php" class="produto">
+                <img src="fotos/acessorios/perucaverdeamarelo.webp" alt="Acessório Peruca Verde e Amarelo">
+                <h3>Peruca verde e amarelo</h3>
+                <p class="preco">R$ 87,90 à vista</p>
+                <p class="parcelado">ou 2x de R$ 43,95 sem juros</p>
+            </a>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

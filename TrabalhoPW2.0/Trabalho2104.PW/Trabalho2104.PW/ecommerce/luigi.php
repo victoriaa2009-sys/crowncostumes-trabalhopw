@@ -1,239 +1,228 @@
-```html
+
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario_id"])) {
+    header("Location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 
-  <style>
-    .mensagem-carrinho {
-      display: none;
-      margin-top: 20px;
-      padding: 15px;
-      color: #faf06b;
-      background: rgba(240, 247, 203, 0.35);
-      border: 1px solid rgba(100, 92, 3, 0.4);
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+    <style>
+        .mensagem-carrinho {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            color: #faf06b;
+            background: rgba(240, 247, 203, 0.35);
+            border: 1px solid rgba(100, 92, 3, 0.4);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
 
-    .valor-parcial {
-      font-size: 20px;
-      font-weight: bold;
-      color: #8b6b20;
-    }
-  </style>
+        .valor-parcial {
+            font-size: 20px;
+            font-weight: bold;
+            color: #8b6b20;
+        }
+    </style>
 </head>
 
 <body>
 
-  <div class="topo">
-    <form class="barra" action="luigi.html">
+    <?php include "cabecalho.php"; ?>
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
+    <section class="produto-container" id="luigi">
 
-      <div>
-        <span class="busca-container">
-          <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-          <input type="submit" value="Buscar" class="btn-busca">
-          <div id="sugestoes"></div>
-        </span>
-      </div>
+        <div class="produto-img">
+            <img src="fotos/unissex/uni8.jpg" alt="Fantasia do Luigi">
+        </div>
 
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
+        <div class="produto-info">
 
-    </form>
-  </div>
+            <h2>Fantasia do Luigi</h2>
 
-  <section class="produto-container" id="luigi">
+            <p class="preco">R$ 200,00 à vista</p>
+            <p class="parcelado">ou 2x de R$ 100,00 sem juros</p>
+            <p class="entrega">Entrega em até 5 dias úteis</p>
 
-    <div class="produto-img">
-      <img src="fotos/unissex/uni8.jpg" alt="Fantasia do Luigi">
-    </div>
+            <label for="quantidadeLuigi">Quantidade:</label>
 
-    <div class="produto-info">
+            <input type="number" id="quantidadeLuigi" value="1" min="1" step="1">
 
-      <h2>Fantasia do Luigi</h2>
+            <p id="valorParcialLuigi" class="valor-parcial">
+                Valor total: R$ 200,00
+            </p>
 
-      <p class="preco">R$ 200,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 100,00 sem juros</p>
-      <p class="entrega">Entrega em até 5 dias úteis</p>
+            <h3>Formas de pagamento</h3>
 
-      <label for="quantidade">Quantidade:</label>
+            <ul>
+                <li>Cartão de crédito (Visa e Mastercard)</li>
+                <li>Cartão de débito</li>
+                <li>PIX</li>
+                <li>Boleto bancário</li>
+            </ul>
 
-      <input type="number" id="quantidade" value="1" min="1" step="1">
+            <button class="btn" id="adicionarCarrinhoLuigi" type="button">
+                Adicionar ao Carrinho
+            </button>
 
-      <p id="valorParcial" class="valor-parcial">
-        Valor total: R$ 200,00
-      </p>
+            <div id="mensagemCarrinhoLuigi" class="mensagem-carrinho"></div>
 
-      <h3>Formas de pagamento</h3>
+        </div>
 
-      <ul>
-        <li>Cartão de crédito (Visa e Mastercard)</li>
-        <li>Cartão de débito</li>
-        <li>PIX</li>
-        <li>Boleto bancário</li>
-      </ul>
+    </section>
 
-      <button class="btn" id="adicionarCarrinho" type="button">
-        Adicionar ao Carrinho
-      </button>
+    <section class="produto-descricao">
 
-      <div id="mensagemCarrinho" class="mensagem-carrinho"></div>
+        <div>
+            <h2>Descrição do Produto</h2>
 
-    </div>
+            <p>
+                Fantasia completa do Luigi do jogo Super Mario,
+                perfeita para festas, aniversários e eventos temáticos.
+                Confortável, leve e divertida.
+            </p>
+        </div>
 
-  </section>
+        <div>
+            <h2>Características</h2>
 
-  <section class="produto-descricao">
+            <ul>
+                <li>Material: poliéster confortável</li>
+                <li>Tamanhos: 15 a 60+ anos</li>
+                <li>Inclui: chapéu + jardineira</li>
+                <li>Cor: verde, azul e amarelo</li>
+            </ul>
+        </div>
 
-    <div>
-      <h2>Descrição do Produto</h2>
+    </section>
 
-      <p>
-        Fantasia completa do Luigi do jogo Super Mario,
-        perfeita para festas, aniversários e eventos temáticos.
-        Confortável, leve e divertida.
-      </p>
-    </div>
+    <section>
 
-    <div>
-      <h2>Características</h2>
+        <h2>Avaliações</h2>
 
-      <ul>
-        <li>Material: poliéster confortável</li>
-        <li>Tamanhos: 15 a 60+ anos</li>
-        <li>Inclui: chapéu + jardineira</li>
-        <li>Cor: verde, azul e amarelo</li>
-      </ul>
-    </div>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Súper confortável! Amei."</p>
+            <p>12/03/2026</p>
+        </div>
 
-  </section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Demorou um pouco pra chegar, mas gostei."</p>
+            <p>05/03/2026</p>
+        </div>
 
-  <section>
+        <div class="avaliacao">
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>"Amei! Igual à foto."</p>
+            <p>28/02/2026</p>
+        </div>
 
-    <h2>Avaliações</h2>
+        <div class="avaliacao">
+            <p>⭐⭐⭐</p>
+            <p>"Boa, mas o pacote veio rasgado."</p>
+            <p>20/02/2026</p>
+        </div>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Súper confortável! Amei."</p>
-      <p>12/03/2026</p>
-    </div>
+    </section>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Demorou um pouco pra chegar, mas gostei."</p>
-      <p>05/03/2026</p>
-    </div>
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>"Amei! Igual à foto."</p>
-      <p>28/02/2026</p>
-    </div>
+    <script src="script.js"></script>
 
-    <div class="avaliacao">
-      <p>⭐⭐⭐</p>
-      <p>"Boa, mas o pacote veio rasgado."</p>
-      <p>20/02/2026</p>
-    </div>
+    <script>
+    (function() {
 
-  </section>
+        const precoLuigi = 200;
 
-  <script>
+        const quantidadeLuigi = document.getElementById("quantidadeLuigi");
+        const valorParcialLuigi = document.getElementById("valorParcialLuigi");
+        const botaoAdicionarLuigi = document.getElementById("adicionarCarrinhoLuigi");
+        const mensagemCarrinhoLuigi = document.getElementById("mensagemCarrinhoLuigi");
 
-    const precoProduto = 200;
+        function formatarPrecoLuigi(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+        }
 
-    const quantidade = document.getElementById("quantidade");
-    const valorParcial = document.getElementById("valorParcial");
-    const botaoAdicionar = document.getElementById("adicionarCarrinho");
-    const mensagemCarrinho = document.getElementById("mensagemCarrinho");
+        function atualizarPrecoLuigi() {
 
-    function formatarPreco(valor) {
-      return valor.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-      });
-    }
+            const qtd = Number(quantidadeLuigi.value);
 
-    function atualizarPreco() {
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                valorParcialLuigi.textContent = "Informe uma quantidade válida.";
+                return;
+            }
 
-      const qtd = Number(quantidade.value);
+            valorParcialLuigi.textContent =
+                "Valor total: " + formatarPrecoLuigi(precoLuigi * qtd);
+        }
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        valorParcial.textContent = "Informe uma quantidade válida.";
-        return;
-      }
+        quantidadeLuigi.addEventListener("input", atualizarPrecoLuigi);
+        quantidadeLuigi.addEventListener("change", atualizarPrecoLuigi);
 
-      valorParcial.textContent =
-        "Valor total: " + formatarPreco(precoProduto * qtd);
+        botaoAdicionarLuigi.addEventListener("click", function() {
 
-    }
+            const qtd = Number(quantidadeLuigi.value);
 
-    quantidade.addEventListener("input", atualizarPreco);
-    quantidade.addEventListener("change", atualizarPreco);
+            if (!Number.isInteger(qtd) || qtd < 1) {
+                mensagemCarrinhoLuigi.style.display = "block";
+                mensagemCarrinhoLuigi.style.color = "red";
+                mensagemCarrinhoLuigi.textContent = "Escolha uma quantidade válida!";
+                return;
+            }
 
-    botaoAdicionar.addEventListener("click", function() {
+            const produtoLuigi = {
+                nome: "Fantasia do Luigi",
+                preco: precoLuigi,
+                quantidade: qtd,
+                imagem: "fotos/unissex/uni8.jpg"
+            };
 
-      const qtd = Number(quantidade.value);
+            let carrinhoLuigi =
+                JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
-      if (!Number.isInteger(qtd) || qtd < 1) {
-        mensagemCarrinho.style.display = "block";
-        mensagemCarrinho.style.color = "red";
-        mensagemCarrinho.textContent = "Escolha uma quantidade válida!";
-        return;
-      }
+            const produtoExistenteLuigi = carrinhoLuigi.find(function(item) {
+                return item.nome === produtoLuigi.nome;
+            });
 
-      const produto = {
-        nome: "Fantasia do Luigi",
-        preco: precoProduto,
-        quantidade: qtd,
-        imagem: "fotos/unissex/uni8.jpg"
-      };
+            if (produtoExistenteLuigi) {
+                produtoExistenteLuigi.quantidade += qtd;
+            } else {
+                carrinhoLuigi.push(produtoLuigi);
+            }
 
-      let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+            sessionStorage.setItem("carrinho", JSON.stringify(carrinhoLuigi));
 
-      const produtoExistente = carrinho.find(function(item) {
-        return item.nome === produto.nome;
-      });
+            mensagemCarrinhoLuigi.style.display = "block";
+            mensagemCarrinhoLuigi.style.color = "#faf06b";
 
-      if (produtoExistente) {
-        produtoExistente.quantidade += qtd;
-      } else {
-        carrinho.push(produto);
-      }
+            mensagemCarrinhoLuigi.innerHTML =
+                "✓ Produto adicionado ao carrinho!<br><br>" +
+                "Quantidade: " + qtd + "<br>" +
+                "Valor: " + formatarPrecoLuigi(precoLuigi * qtd);
 
-      sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+        });
 
-      mensagemCarrinho.style.display = "block";
-      mensagemCarrinho.style.color = "#faf06b";
+        atualizarPrecoLuigi();
 
-      mensagemCarrinho.innerHTML =
-        "✓ Produto adicionado ao carrinho!<br><br>" +
-        "Quantidade: " + qtd + "<br>" +
-        "Valor: " + formatarPreco(precoProduto * qtd);
-
-    });
-
-    atualizarPreco();
-
-  </script>
-
-  <footer>
-    <p>© 2026 Crown Costumes</p>
-  </footer>
+    })();
+    </script>
 
 </body>
 </html>

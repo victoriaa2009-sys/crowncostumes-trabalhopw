@@ -1,87 +1,69 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <title>Crown Costumes</title>
-  <link href="estilos.css" rel="stylesheet">
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Crown Costumes</title>
+    <link href="estilos.css" rel="stylesheet">
 </head>
 
 <body>
-  
-  <div class="topo">
-    <form class="barra" action="unissex.html">
 
-      <div class="marca">
-        <img src="fotos/logopreta.png" class="logopreta" alt="logo preta">
-        <a href="paginainicial.php" class="nome-barra">Crown Costumes</a>
-      </div>
-      <div>
-            <span class="busca-container">
-              <input type="text" placeholder="Buscar fantasias..." name="busca" id="campo-busca" autocomplete="off">
-              <input type="submit" value="Buscar" class="btn-busca">
-              <div id="sugestoes"></div>
-            </span>
-      </div>
-      <div class="acoes">
-        <button formaction="login.php">Login</button>
-        <button formaction="cadastro.html">Cadastro</button>
-        <button formaction="carrinho.php">Carrinho</button>
-        <button formaction="sobre.html">Sobre</button>
-      </div>
-    </form>
-</div>
+    <?php include "cabecalho.php"; ?>
 
-<section>
-  <h2>Explore Nossa Coleção Exclusiva Unissex</h2>
+    <section>
+        <h2>Explore Nossa Coleção Exclusiva Unissex</h2>
 
-  <div class="produtos">
+        <div class="produtos">
 
-    <a href="panico.html" class="produto">
-      <img src="fotos/unissex/uni6.webp" alt="Fantasia Pânico unissex">
-       <h3>Pânico</h3>
-      <p class="preco">R$ 200,00 à vista</p>
-    <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
-    </a>
+            <a href="panico.php" class="produto">
+                <img src="fotos/unissex/uni6.webp" alt="Fantasia Pânico unissex">
+                <h3>Pânico</h3>
+                <p class="preco">R$ 200,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+            </a>
 
-    <a href="pikachu.html" class="produto">
-      <img src="fotos/unissex/uni4.webp" alt="Fantasia Pikachu unissex">
-       <h3>Pikachu</h3>
-      <p class="preco">R$ 200,00 à vista</p>
-    <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
-    </a>
+            <a href="pikachu.php" class="produto">
+                <img src="fotos/unissex/uni4.webp" alt="Fantasia Pikachu unissex">
+                <h3>Pikachu</h3>
+                <p class="preco">R$ 200,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+            </a>
 
-    <a href="luigi.html" class="produto">
-      <img src="fotos/unissex/uni8.jpg" alt="Fantasia Luigi unissex">
-      <h3>Luigi</h3>
-      <p class="preco">R$ 200,00 à vista</p>
-    <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
-    </a>
-</div>
+            <a href="luigi.php" class="produto">
+                <img src="fotos/unissex/uni8.jpg" alt="Fantasia Luigi unissex">
+                <h3>Luigi</h3>
+                <p class="preco">R$ 200,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+            </a>
 
-<div class="produtos">
-    <a href="barney.html" class="produto">
-      <img src="fotos/unissex/uni3.jpg" alt="Fantasia Barney unissex">
-      <h3>Barney</h3>
-      <p class="preco">R$ 200,00 à vista</p>
-    <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
-    </a>
+        </div>
 
-    <a href="harrypotter.html" class="produto">
-      <img src="fotos/unissex/uni7.webp" alt="Fantasia Harry Potter unissex">
-      <h3>Harry Potter</h3>
-      <p class="preco">R$ 200,00 à vista</p>
-      <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
-    </a>
+        <div class="produtos">
 
-</div>
-</section>
+            <a href="barney.php" class="produto">
+                <img src="fotos/unissex/uni3.jpg" alt="Fantasia Barney unissex">
+                <h3>Barney</h3>
+                <p class="preco">R$ 200,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+            </a>
 
-<footer>
-  <p>© 2026 Crown Costumes</p>
-</footer>
+            <a href="harrypotter.php" class="produto">
+                <img src="fotos/unissex/uni7.webp" alt="Fantasia Harry Potter unissex">
+                <h3>Harry Potter</h3>
+                <p class="preco">R$ 200,00 à vista</p>
+                <p class="parcelado">ou 2x de R$ 50,00 sem juros</p>
+            </a>
 
-  <script src="script.js"></script>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Crown Costumes</p>
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
